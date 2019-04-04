@@ -101,7 +101,7 @@ new (function() {
 				playAudioFromUrl(url, callback);
 			}
 		});		
-wKXkEZnipFJwypkDfU+z3oe7V+ZrX5iCkHpOD0CM	}
+	}
 	function comparethem(bucketsource,bucketinput) {
 		var comparams = {
                        SimilarityThreshold: 20,
