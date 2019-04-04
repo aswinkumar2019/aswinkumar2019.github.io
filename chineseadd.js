@@ -2,7 +2,7 @@ new (function() {
 
 	var ext = this;
 
-	$.getScript('https://ceyhunozgun.github.io/awsAIScratchExtension/aws-sdk-2.270.1.js', initExtension);
+	$.getScript('https://ceyhunozgun.github.io/awsAIScratchExtension/aws-sdk-2.270.1.js');
 
 	var accessKeyId = '';
 	var secretAccessKey = '';
@@ -105,8 +105,6 @@ new (function() {
 		});
 	}
 
-	function initExtension() {
-        }
 	function initAWSServices(region) {
 		initAWS(region);
 		initPolly(region);
