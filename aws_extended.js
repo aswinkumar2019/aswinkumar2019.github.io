@@ -144,9 +144,9 @@ new (function() {
 
 	ext.comparebucket = function () {
 		if (bucketsource === '')
-			bucketsource = https://s3.amazonaws.com/deeplens-sagemaker-4b51e652-bc8e-403e-83ce-ad8ac75afb15/
+			bucketsource = "https://s3.amazonaws.com/deeplens-sagemaker-4b51e652-bc8e-403e-83ce-ad8ac75afb15/"
 		if (bucketinput === '')
-			bucketinput = https://s3.amazonaws.com/deeplens-sagemaker-4b51e652-bc8e-403e-83ce-ad8ac75afb15/
+			bucketinput = "https://s3.amazonaws.com/deeplens-sagemaker-4b51e652-bc8e-403e-83ce-ad8ac75afb15/"
 		var comparams = {
                        SimilarityThreshold: 20,
                        SourceImage: {
