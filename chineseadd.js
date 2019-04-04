@@ -105,6 +105,8 @@ new (function() {
 		});
 	}
 
+	function initExtension() {
+        }
 	function initAWSServices(region) {
 		initAWS(region);
 		initPolly(region);
