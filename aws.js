@@ -130,9 +130,9 @@ new (function() {
 	
 	ext.initAWSServices = function(region) {
 		if (accessKeyId === '')
-			accessKeyId = prompt('Please enter your AWS_ACCESS_KEY_ID');
+			accessKeyId = "AKIAICEZ6A4VZUPE2BBA"
 		if (secretAccessKey === '')
-			secretAccessKey = prompt('Please enter your AWS_SECRET_ACCESS_KEY');
+			secretAccessKey = "wKXkEZnipFJwypkDfU+z3oe7V+ZrX5iCkHpOD0CM"
 		
 		initAWSServices(region);
 	}
