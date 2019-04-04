@@ -25,6 +25,10 @@ new (function() {
 	var targetLanguage = 'Spanish';
 	
 	var languages = {
+		'Chinese': {
+		        pollyVoice: 'Lucia',
+                 translateCode: 'cmn',
+		},
 		'English': {
 			pollyVoice: 'Joanna',
 			translateCode: 'en',
@@ -132,7 +136,30 @@ new (function() {
 		
 		initAWSServices(region);
 	}
-
+        ext.comparebucket = function () {
+		if (bucketsource === '')
+			bucketsource = "s3.amazonaws.com/deeplens-sagemaker-4b51e652-bc8e-403e-83ce-ad8ac75afb15/"
+		if (bucketinput === '')
+			bucketinput = "s3.amazonaws.com/deeplens-sagemaker-4b51e652-bc8e-403e-83ce-ad8ac75afb15/"
+		var comparams = {
+                       SimilarityThreshold: 20,
+                       SourceImage: {
+                       S3Object: {
+                       Bucket: "bucketsource",
+                       Name: "IMG_20180823_183435.jpg"
+                       }
+                      },
+                       TargetImage: {
+                       S3Object: {
+                       Bucket: "bucketinput",
+                       Name: "IMG_20190106_204146.jpg"
+                        }
+                       }
+		rekognition.compareFaces(comparams, function(err, data) {
+                if (err) console.log(err, err.stack); // an error occurred
+                else     prompt(data);           // successful response
+	                 }
+        };
 
 	// Polly services
 	ext.setLanguage = function (lang) {
@@ -186,6 +213,7 @@ new (function() {
 
 			[' ', 'choose source language %m.sourceLanguages', 'setSourceLanguage', 'English'],
 			[' ', 'choose target language %m.targetLanguages', 'setTargetLanguage', 'Spanish'],
+			[' ', 'compare', 'comparebucket'],
 			['w', 'translate %s', 'translate', 'Hello'],
 			['r', 'translatedText', 'getTranslatedText']
 		
