@@ -145,17 +145,18 @@ new (function() {
                        SimilarityThreshold: 20,
                        SourceImage: {
                        S3Object: {
-                       Bucket: "bucketsource",
+                       Bucket: bucketsource,
                        Name: "IMG_20180823_183435.jpg"
                        }
                       },
                        TargetImage: {
                        S3Object: {
-                       Bucket: "bucketinput",
+                       Bucket: bucketinput,
                        Name: "IMG_20190106_204146.jpg"
                         }
                        }
 		};
+		prompt("Hello")
 		rekognition.compareFaces(comparams, function(err, data) {
                 if (err) console.log(err, err.stack); // an error occurred
                 else     console.log(data);           // successful response
