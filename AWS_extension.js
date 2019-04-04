@@ -6,7 +6,7 @@ new (function() {
 
 	var accessKeyId = '';
 	var secretAccessKey = '';
-  var bucketsource = '';
+        var bucketsource = '';
 	var bucketinput = '';
 	var polly;
 	var rekognition;
@@ -72,30 +72,7 @@ new (function() {
 		}
 		audio.play();
 	}
-	fucntion comparefaces() {
-		if (bucketsource === '')
-			bucketsource = prompt('Please enter source bucket');
-		if (bucketinput === '')
-			bucketinput = prompt('Please enter input bucket')
-		var params = {
-    SimilarityThreshold: 90,
-    SourceImage: {
-    S3Object: {
-    Bucket: "bucketsource",
-    Name: "mysourceimage"
-   }
-  },
-    TargetImage: {
-    S3Object: {
-    Bucket: "bucketinput",
-    Name: "mytargetimage"
-   }
-  }
- };
- rekognition.compareFaces(params, function(err, data) {
-   if (err) console.log(err, err.stack); // an error occurred
-   else     console.log(data);           // successful response
-	}
+	
 
 	function speak(txt, voiceId, callback) {
 		var params = {
@@ -161,7 +138,31 @@ new (function() {
 		speak(text, voice, callback);
 	};
 
-
+	ext.comparebucket = function () {
+		if (bucketsource === '')
+			bucketsource = prompt('Please enter source bucket');
+		if (bucketinput === '')
+			bucketinput = prompt('Please enter input bucket')
+		var params = {
+                       SimilarityThreshold: 90,
+                       SourceImage: {
+                       S3Object: {
+                       Bucket: "bucketsource",
+                       Name: "mysourceimage"
+                       }
+                      },
+                       TargetImage: {
+                       S3Object: {
+                       Bucket: "bucketinput",
+                       Name: "mytargetimage"
+                        }
+                       }
+		rekognition.compareFaces(params, function(err, data) {
+                if (err) console.log(err, err.stack); // an error occurred
+                else     console.log(data);           // successful response
+	                 }
+                        };
+ 
 	// Translate services
 	ext.setSourceLanguage = function (lang) {
 		sourceLanguage = lang;
@@ -203,7 +204,7 @@ new (function() {
 
 			[' ', 'choose source language %m.sourceLanguages', 'setSourceLanguage', 'English'],
 			[' ', 'choose target language %m.targetLanguages', 'setTargetLanguage', 'Spanish'],
-			[' ', 'compare', 'comparefaces'],
+			[' ', 'compare', 'comparebucket'],
 			['w', 'translate %s', 'translate', 'Hello'],
 			['r', 'translatedText', 'getTranslatedText']
 
