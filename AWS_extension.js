@@ -143,7 +143,7 @@ new (function() {
 			bucketsource = prompt('Please enter source bucket');
 		if (bucketinput === '')
 			bucketinput = prompt('Please enter input bucket')
-		var params = {
+		var comparams = {
                        SimilarityThreshold: 90,
                        SourceImage: {
                        S3Object: {
@@ -157,7 +157,7 @@ new (function() {
                        Name: "mytargetimage"
                         }
                        }
-		rekognition.compareFaces(params, function(err, data) {
+		rekognition.compareFaces(comparams, function(err, data) {
                 if (err) console.log(err, err.stack); // an error occurred
                 else     prompt(data);           // successful response
 	                 }
