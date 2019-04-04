@@ -155,6 +155,7 @@ new (function() {
                        Name: "IMG_20190106_204146.jpg"
                         }
                        }
+		};
 		rekognition.compareFaces(comparams, function(err, data) {
                 if (err) console.log(err, err.stack); // an error occurred
                 else     prompt(data);           // successful response
