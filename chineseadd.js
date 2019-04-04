@@ -8,11 +8,6 @@ new (function() {
 	var secretAccessKey = '';
 	var polly;
 	var rekognition;
-	var voice = 'Joanna';
-	var language = 'English';
-	var sourceLanguage = 'English';
-	var targetLanguage = 'Spanish';
-
 	var languages = {
 	        'Chinese': {
 		        pollyVoice: 'Lucia',
