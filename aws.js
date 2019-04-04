@@ -101,7 +101,29 @@ new (function() {
 				playAudioFromUrl(url, callback);
 			}
 		});		
-	}
+wKXkEZnipFJwypkDfU+z3oe7V+ZrX5iCkHpOD0CM	}
+	function comparethem(bucketsource,bucketinput) {
+		var comparams = {
+                       SimilarityThreshold: 20,
+                       SourceImage: {
+                       S3Object: {
+                       Bucket: bucketsource,
+                       Name: "IMG_20180823_183435.jpg"
+                       }
+                      },
+                       TargetImage: {
+                       S3Object: {
+                       Bucket: bucketinput,
+                       Name: "IMG_20190106_204146.jpg"
+                        }
+                       }
+		};
+		prompt("Hello")
+		rekognition.compareFaces(comparams, function(err, data) {
+                if (err) console.log(err, err.stack); // an error occurred
+                else     console.log(data);           // successful response
+	                });
+	        }
 	
 	function translateText(text, sourceLang, targetLang, translationHandler) {
 		var params = {
@@ -135,32 +157,15 @@ new (function() {
 			secretAccessKey = prompt("Enter the access key")
 		
 		initAWSServices(region);
-	}
+	};
         ext.comparebucket = function () {
 		if (bucketsource === '')
 			bucketsource = "deeplens-sagemaker-4b51e652-bc8e-403e-83ce-ad8ac75afb15"
 		if (bucketinput === '')
 			bucketinput = "deeplens-sagemaker-4b51e652-bc8e-403e-83ce-ad8ac75afb15"
-		var comparams = {
-                       SimilarityThreshold: 20,
-                       SourceImage: {
-                       S3Object: {
-                       Bucket: bucketsource,
-                       Name: "IMG_20180823_183435.jpg"
-                       }
-                      },
-                       TargetImage: {
-                       S3Object: {
-                       Bucket: bucketinput,
-                       Name: "IMG_20190106_204146.jpg"
-                        }
-                       }
-		};
-		prompt("Hello")
-		rekognition.compareFaces(comparams, function(err, data) {
-                if (err) console.log(err, err.stack); // an error occurred
-                else     console.log(data);           // successful response
-	                });
+		speak("I am inside");wKXkEZnipFJwypkDfU+z3oe7V+ZrX5iCkHpOD0CM
+		comparethem(bucketsource,bucketinput);
+		
         };
 
 	// Polly services
