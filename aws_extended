@@ -140,21 +140,21 @@ new (function() {
 
 	ext.comparebucket = function () {
 		if (bucketsource === '')
-			bucketsource = prompt('Please enter source bucket');
+			bucketsource = https://s3.amazonaws.com/deeplens-sagemaker-4b51e652-bc8e-403e-83ce-ad8ac75afb15/
 		if (bucketinput === '')
-			bucketinput = prompt('Please enter input bucket')
+			bucketinput = https://s3.amazonaws.com/deeplens-sagemaker-4b51e652-bc8e-403e-83ce-ad8ac75afb15/
 		var comparams = {
                        SimilarityThreshold: 90,
                        SourceImage: {
                        S3Object: {
                        Bucket: "bucketsource",
-                       Name: "mysourceimage"
+                       Name: "IMG_20180823_183435.jpg"
                        }
                       },
                        TargetImage: {
                        S3Object: {
                        Bucket: "bucketinput",
-                       Name: "mytargetimage"
+                       Name: "IMG_20190106_204146.jpg"
                         }
                        }
 		rekognition.compareFaces(comparams, function(err, data) {
