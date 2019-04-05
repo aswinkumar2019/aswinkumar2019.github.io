@@ -8,7 +8,6 @@ new(function () {
 	var secretAccessKey = '';
 
 	var polly;
-	var rekognition;
 
 	var voice = 'Joanna';
 	var language = 'English';
