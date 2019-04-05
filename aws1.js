@@ -8,7 +8,7 @@ new(function () {
 	var secretAccessKey = '';
 
 	var polly;
-        var rekognition = new AWS.Rekognition();
+        var Rekognition;
 	var voice = 'Joanna';
 	var language = 'English';
 	var sourceLanguage = 'English';
@@ -66,7 +66,11 @@ new(function () {
 		});
 	}
 
-
+        function initRekognition(region) {
+		 var rekognition = new AWS.Rekognition();({
+			region: region
+		});
+	}
 	function playAudioFromUrl(url, finishHandler) {
 		var audio = new Audio(url);
 		audio.onended = function () {
@@ -144,6 +148,7 @@ new(function () {
 		initAWS(region);
 		initPolly(region);
 		initTranslate(region);
+		initRekognition(region);
 	}
 
 	// Initialization services
