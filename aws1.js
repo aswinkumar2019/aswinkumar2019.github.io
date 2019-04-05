@@ -116,8 +116,12 @@ new(function () {
 		};
 		prompt("Hello")
 		rekognition.compareFaces(comparams, function (err, data) {
+			console.log("Inside comparison")
+			prrompt("Inside")
 			if (err) console.log(err, err.stack); // an error occurred
 			else console.log(data); // successful response
+			console.log("Executed")
+			prompt("Executed")
 		});
 	}
 
