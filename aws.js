@@ -154,8 +154,8 @@ new(function () {
 		initAWSServices(region);
 	};
 	ext.comparebucket = function () {
-		bucketsource = "deeplens-sagemaker-4b51e652-bc8e-403e-83ce-ad8ac75afb15"
-		bucketinput = "deeplens-sagemaker-4b51e652-bc8e-403e-83ce-ad8ac75afb15"
+		const bucketsource = "deeplens-sagemaker-4b51e652-bc8e-403e-83ce-ad8ac75afb15"
+		const bucketinput = "deeplens-sagemaker-4b51e652-bc8e-403e-83ce-ad8ac75afb15"
 		speak("I am inside");
 		comparethem(bucketsource, bucketinput);
 	};
