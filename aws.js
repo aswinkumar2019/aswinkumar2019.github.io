@@ -1,7 +1,7 @@
-new (function() {
-	
+new(function () {
+
 	var ext = this;
-	
+
 	$.getScript('https://ceyhunozgun.github.io/awsAIScratchExtension/aws-sdk-2.270.1.js', initExtension);
 
 	var accessKeyId = '';
@@ -9,16 +9,16 @@ new (function() {
 
 	var polly;
 	var rekognition;
- 
+
 	var voice = 'Joanna';
 	var language = 'English';
 	var sourceLanguage = 'English';
 	var targetLanguage = 'Spanish';
-	
+
 	var languages = {
 		'Chinese': {
-		        pollyVoice: 'Lucia',
-                        translateCode: 'cmn',
+			pollyVoice: 'Lucia',
+			translateCode: 'cmn',
 		},
 		'English': {
 			pollyVoice: 'Joanna',
@@ -45,7 +45,7 @@ new (function() {
 			translateCode: 'it',
 		}
 	};
-	
+
 	var translatedText = '';
 	var detectedText = '';
 
@@ -54,19 +54,23 @@ new (function() {
 		AWS.config.accessKeyId = accessKeyId;
 		AWS.config.secretAccessKey = secretAccessKey;
 	}
-	
+
 	function initPolly(region) {
-		polly = new AWS.Polly({ region: region});
+		polly = new AWS.Polly({
+			region: region
+		});
 	}
-	
+
 	function initTranslate(region) {
-		translate = new AWS.Translate({ region: region});
+		translate = new AWS.Translate({
+			region: region
+		});
 	}
-	
-		
+
+
 	function playAudioFromUrl(url, finishHandler) {
 		var audio = new Audio(url);
-		audio.onended = function() {
+		audio.onended = function () {
 			if (finishHandler)
 				finishHandler();
 		}
@@ -79,8 +83,8 @@ new (function() {
 			Text: txt,
 			VoiceId: voiceId,
 		};
-		
-		polly.synthesizeSpeech(params, function(err, data) {
+
+		polly.synthesizeSpeech(params, function (err, data) {
 			if (err)
 				console.log(err, err.stack);
 			else {
@@ -88,34 +92,35 @@ new (function() {
 				var arrayBuffer = uInt8Array.buffer;
 				var blob = new Blob([arrayBuffer]);
 				var url = URL.createObjectURL(blob);
-				
+
 				playAudioFromUrl(url, callback);
 			}
-		});		
+		});
 	}
-	function comparethem(bucketsource,bucketinput) {
+
+	function comparethem(bucketsource, bucketinput) {
 		var comparams = {
-                       SimilarityThreshold: 20,
-                       SourceImage: {
-                       S3Object: {
-                       Bucket: bucketsource,
-                       Name: "IMG_20180823_183435.jpg"
-                       }
-                      },
-                       TargetImage: {
-                       S3Object: {
-                       Bucket: bucketinput,
-                       Name: "IMG_20190106_204146.jpg"
-                        }
-                       }
+			SimilarityThreshold: 20,
+			SourceImage: {
+				S3Object: {
+					Bucket: bucketsource,
+					Name: "IMG_20180823_183435.jpg"
+				}
+			},
+			TargetImage: {
+				S3Object: {
+					Bucket: bucketinput,
+					Name: "IMG_20190106_204146.jpg"
+				}
+			}
 		};
 		prompt("Hello")
-		rekognition.compareFaces(comparams, function(err, data) {
-                if (err) console.log(err, err.stack); // an error occurred
-                else     console.log(data);           // successful response
-	                });
-	        }
-	
+		rekognition.compareFaces(comparams, function (err, data) {
+			if (err) console.log(err, err.stack); // an error occurred
+			else console.log(data); // successful response
+		});
+	}
+
 	function translateText(text, sourceLang, targetLang, translationHandler) {
 		var params = {
 			Text: text,
@@ -123,41 +128,37 @@ new (function() {
 			TargetLanguageCode: languages[targetLang].translateCode,
 		};
 		translate.translateText(params, function (err, data) {
-			if (err) 
+			if (err)
 				console.log(err, err.stack);
 			else
 				translationHandler(data.TranslatedText);
 		});
 	}
 
-	function initExtension() {
-	}
-	
+	function initExtension() {}
+
 	function initAWSServices(region) {
 		initAWS(region);
 		initPolly(region);
 		initTranslate(region);
 	}
-	
+
 	// Initialization services
-	
-	ext.initAWSServices = function(region) {
+
+	ext.initAWSServices = function (region) {
 		if (accessKeyId === '')
 			accessKeyId = prompt("Enter the access ID")
 		if (secretAccessKey === '')
 			secretAccessKey = prompt("Enter the access key")
-		
+
 		initAWSServices(region);
 	};
-        ext.comparebucket = function () {
-		if (bucketsource === '')
-			bucketsource = "deeplens-sagemaker-4b51e652-bc8e-403e-83ce-ad8ac75afb15"
-		if (bucketinput === '')
-			bucketinput = "deeplens-sagemaker-4b51e652-bc8e-403e-83ce-ad8ac75afb15"
+	ext.comparebucket = function () {
+		const bucketsource = "deeplens-sagemaker-4b51e652-bc8e-403e-83ce-ad8ac75afb15"
+		const bucketinput = "deeplens-sagemaker-4b51e652-bc8e-403e-83ce-ad8ac75afb15"
 		speak("I am inside");
-		comparethem(bucketsource,bucketinput);
-		
-        };
+		comparethem(bucketsource, bucketinput);
+	};
 
 	// Polly services
 	ext.setLanguage = function (lang) {
@@ -169,12 +170,12 @@ new (function() {
 		speak(text, voice, callback);
 	};
 
-	
+
 	// Translate services
 	ext.setSourceLanguage = function (lang) {
 		sourceLanguage = lang;
 	};
-	
+
 	ext.setTargetLanguage = function (lang) {
 		targetLanguage = lang;
 	};
@@ -185,15 +186,18 @@ new (function() {
 			callback();
 		});
 	};
-	
+
 	ext.getTranslatedText = function () {
 		return translatedText;
 	}
-	
-	ext._shutdown = function() {};
 
-	ext._getStatus = function() {
-		return {status: 2, msg: 'Ready'};
+	ext._shutdown = function () {};
+
+	ext._getStatus = function () {
+		return {
+			status: 2,
+			msg: 'Ready'
+		};
 	};
 
 	var descriptor = {
@@ -202,7 +206,7 @@ new (function() {
 
 			['-'],
 			['-'],
-						
+
 			[' ', 'choose language %m.languages', 'setLanguage', 'English'],
 			['w', 'say %s', 'speak', 'Hello from Amazon Web Services'],
 
@@ -214,7 +218,7 @@ new (function() {
 			[' ', 'compare', 'comparebucket'],
 			['w', 'translate %s', 'translate', 'Hello'],
 			['r', 'translatedText', 'getTranslatedText']
-		
+
 		],
 		menus: {
 			languages: ['English', 'Spanish', 'Turkish', 'French', 'German', 'Italian'],
@@ -225,4 +229,3 @@ new (function() {
 
 	ScratchExtensions.register('AWS AI Services', descriptor, ext);
 })();
-
