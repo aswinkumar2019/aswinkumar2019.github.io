@@ -9,7 +9,6 @@ new(function () {
 
 	var polly;
 	var rekognition = new AWS.Rekognition();
-
 	var voice = 'Joanna';
 	var language = 'English';
 	var sourceLanguage = 'English';
@@ -116,8 +115,12 @@ new(function () {
 		};
 		prompt("Hello")
 		rekognition.compareFaces(comparams, function (err, data) {
+			console.log("Inside comparison")
+			prrompt("Inside")
 			if (err) console.log(err, err.stack); // an error occurred
 			else console.log(data); // successful response
+			console.log("Executed")
+			prompt("Executed")
 		});
 	}
 
@@ -154,8 +157,8 @@ new(function () {
 		initAWSServices(region);
 	};
 	ext.comparebucket = function () {
-		const bucketsource = "deeplens-sagemaker-4b51e652-bc8e-403e-83ce-ad8ac75afb15"
-		const bucketinput = "deeplens-sagemaker-4b51e652-bc8e-403e-83ce-ad8ac75afb15"
+		bucketsource = "deeplens-sagemaker-4b51e652-bc8e-403e-83ce-ad8ac75afb15"
+		bucketinput = "deeplens-sagemaker-4b51e652-bc8e-403e-83ce-ad8ac75afb15"
 		speak("I am inside");
 		comparethem(bucketsource, bucketinput);
 	};
