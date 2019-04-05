@@ -8,7 +8,7 @@ new(function () {
 	var secretAccessKey = '';
 
 	var polly;
-	var rekognition;
+	var rekognition = new AWS.Rekognition();
 
 	var voice = 'Joanna';
 	var language = 'English';
