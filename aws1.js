@@ -113,7 +113,7 @@ new(function () {
 			TargetImage: {
 				S3Object: {
 					Bucket: bucketinput,
-					Name: "IMG_20180901_061127.jpg"
+					Name: "crow.jpg"
 				}
 			}
 		};
