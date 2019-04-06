@@ -67,7 +67,7 @@ new(function () {
 	}
 
         function initRekognition(region) {
-		 var rekognition = new AWS.Rekognition();({
+		 var rekognition = new AWS.Rekognition()({
 			region: region
 		});
 	}
