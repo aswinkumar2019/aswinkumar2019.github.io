@@ -107,13 +107,13 @@ new(function () {
 			SourceImage: {
 				S3Object: {
 					Bucket: bucketsource,
-					Name: "IMG_20180823_183435.jpg"
+					Name: "IMG_20190118_174505.jpg"
 				}
 			},
 			TargetImage: {
 				S3Object: {
 					Bucket: bucketinput,
-					Name: "crow.jpg"
+					Name: "IMG_20190225_132558.jpg"
 				}
 			}
 		};
@@ -158,8 +158,8 @@ new(function () {
 		initAWSServices(region);
 	};
 	ext.comparebucket = function () {
-		bucketsource = "deeplens-sagemaker-4b51e652-bc8e-403e-83ce-ad8ac75afb15"
-		bucketinput = "deeplens-sagemaker-4b51e652-bc8e-403e-83ce-ad8ac75afb15"
+		bucketsource = "youcode"
+		bucketinput = "youcode"
 		speak("I am inside");
 		comparethem(bucketsource, bucketinput);
 	};
