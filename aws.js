@@ -163,6 +163,8 @@ new(function () {
 		speak("I am inside");
 		comparethem(bucketsource, bucketinput);
 	};
+	ext.bucket = function (storage) {
+		
 
 	// Polly services
 	ext.setLanguage = function (lang) {
@@ -220,6 +222,7 @@ new(function () {
 			[' ', 'choose source language %m.sourceLanguages', 'setSourceLanguage', 'English'],
 			[' ', 'choose target language %m.targetLanguages', 'setTargetLanguage', 'Spanish'],
 			[' ', 'compare', 'comparebucket'],
+			[' ', 'change bucket', 'bucket', 'youcode'],
 			['w', 'translate %s', 'translate', 'Hello'],
 			['r', 'translatedText', 'getTranslatedText']
 
