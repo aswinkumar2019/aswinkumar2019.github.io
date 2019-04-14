@@ -267,5 +267,5 @@ new(function () {
 	};
 
 	ScratchExtensions.register('AWS AI Services', descriptor, ext);
-})();
+)();
 
