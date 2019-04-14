@@ -100,7 +100,23 @@ new(function () {
 			}
 		});
 	}
-
+	
+	function labelit(bucketsource) {
+		var labeling = {
+			Image: {
+                                S3Object: {
+                                Bucket: bucketsource, 
+                                Name: "IMG_20181105_161625.jpg"
+                                }
+                               }, 
+                               MaxLabels: 123, 
+                               MinConfidence: 30
+                               };
+	
+        rekognition.detectLabels(labeling, function(err, data) {
+                   if (err) console.log(err, err.stack); // an error occurred
+                   else     console.log(data);           // successful response
+	 });
 	function comparethem(bucketsource, bucketinput) {
 		var comparams = {
 			SimilarityThreshold: 20,
@@ -156,6 +172,11 @@ new(function () {
 			secretAccessKey = prompt("Enter the access key")
 
 		initAWSServices(region);
+	};
+	
+	ext.label = function () {
+		bucketsource = "youcode"
+		labelit(bucketsource);
 	};
 	ext.comparebucket = function () {
 		bucketsource = "youcode"
@@ -222,7 +243,8 @@ new(function () {
 			[' ', 'choose source language %m.sourceLanguages', 'setSourceLanguage', 'English'],
 			[' ', 'choose target language %m.targetLanguages', 'setTargetLanguage', 'Spanish'],
 			[' ', 'compare', 'comparebucket'],
-			[' ', 'change bucket', 'bucket', 'youcode'],
+			[' ', 'DetectLabels', 'label']
+		//	[' ', 'change bucket', 'bucket', 'youcode'],
 			['w', 'translate %s', 'translate', 'Hello'],
 			['r', 'translatedText', 'getTranslatedText']
 
