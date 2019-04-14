@@ -105,8 +105,8 @@ new(function () {
 		var labeling = {
 			Image: {
                         S3Object: {
-                        Bucket: "mybucket", 
-                        Name: "myphoto"
+                        Bucket: bucketsource, 
+                        Name: "IMG_20181105_161625.jpg"
                             }
                         }, 
                         MaxLabels: 123, 
