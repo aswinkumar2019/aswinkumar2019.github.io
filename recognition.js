@@ -102,7 +102,7 @@ new(function () {
 	}
 	
 	
-	function detectit(bucketsource) {
+	function detectthem(bucketsource) {
 		var detecting = {
 			 Image: {
                          S3Object: {
@@ -275,7 +275,7 @@ new(function () {
 			[' ', 'choose target language %m.targetLanguages', 'setTargetLanguage', 'Spanish'],
 			[' ', 'Compare', 'comparebucket'],
 			[' ', 'LabelText', 'labelit'],
-			[' ', 'DetectText', 'Detectit'],
+			[' ', 'DetectText', 'detectit'],
 			['w', 'translate %s', 'translate', 'Hello'],
 			['r', 'translatedText', 'getTranslatedText']
 
