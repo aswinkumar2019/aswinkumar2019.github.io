@@ -121,7 +121,7 @@ new(function () {
 			Image: {
                         S3Object: {
                         Bucket: bucketsource, 
-                        Name: "myphoto"
+                        Name: "IMG_20190118_174505.jpg"
                             }
                         }, 
                         MaxLabels: 123, 
