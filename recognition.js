@@ -104,17 +104,17 @@ new(function () {
 	function labelthem(bucketsource) {
 		var labeling = {
 			Image: {
-   S3Object: {
-    Bucket: "mybucket", 
-    Name: "myphoto"
-   }
-  }, 
-  MaxLabels: 123, 
-  MinConfidence: 70
- };
- rekognition.detectLabels(params, function(err, data) {
-   if (err) console.log(err, err.stack); // an error occurred
-   else     console.log(data);           // successful response
+                        S3Object: {
+                        Bucket: "mybucket", 
+                        Name: "myphoto"
+                            }
+                        }, 
+                        MaxLabels: 123, 
+                        MinConfidence: 70
+                        };
+        rekognition.detectLabels(labeling, function(err, data) {
+                if (err) console.log(err, err.stack); // an error occurred
+                else     console.log(data);           // successful response
    /*
    data = {
     Labels: [
@@ -129,7 +129,7 @@ new(function () {
     ]
    }
    */
- });
+             });
 
 	function comparethem(bucketsource, bucketinput) {
 		var comparams = {
