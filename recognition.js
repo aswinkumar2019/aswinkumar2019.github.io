@@ -104,8 +104,7 @@ new(function () {
 	
 	function detectit(bucketsource) {
 		var detecting = {
-			 Image: { /* required */
-                         Bytes: new Buffer('...') || 'STRING_VALUE' /* Strings will be Base-64 encoded on your behalf */,
+			 Image: {
                          S3Object: {
                          Bucket: bucketsource,
                          Name: "Screenshot+from+2019-04-14+12-07-16.png",
@@ -115,7 +114,8 @@ new(function () {
                  rekognition.detectText(detecting, function(err, data) {
                  if (err) console.log(err, err.stack); // an error occurred
                  else     console.log(data);           // successful response
-});
+           });
+	}
 	function labelthem(bucketsource) {
 		var labeling = {
 			Image: {
