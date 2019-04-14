@@ -107,9 +107,8 @@ new(function () {
 			 Image: { /* required */
                          Bytes: new Buffer('...') || 'STRING_VALUE' /* Strings will be Base-64 encoded on your behalf */,
                          S3Object: {
-                         Bucket: 'STRING_VALUE',
-                         Name: 'STRING_VALUE',
-                         Version: 'STRING_VALUE'
+                         Bucket: bucketsource,
+                         Name: "Screenshot+from+2019-04-14+12-07-16.png",
                              }
                             }
                           };
