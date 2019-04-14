@@ -130,6 +130,7 @@ new(function () {
    }
    */
              });
+	}
 
 	function comparethem(bucketsource, bucketinput) {
 		var comparams = {
