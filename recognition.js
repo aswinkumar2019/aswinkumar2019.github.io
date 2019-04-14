@@ -205,7 +205,7 @@ new(function () {
 	};
 	ext.detectit = function () {
 		bucketsource = "youcode"
-		detectit(bucketsource)
+		detectthem(bucketsource);
 	};
 	ext.labelit = function () {
 		bucketsource = "youcode"
@@ -273,8 +273,8 @@ new(function () {
 
 			[' ', 'choose source language %m.sourceLanguages', 'setSourceLanguage', 'English'],
 			[' ', 'choose target language %m.targetLanguages', 'setTargetLanguage', 'Spanish'],
-			[' ', 'Compare', 'comparebucket'],
-			[' ', 'LabelText', 'labelit'],
+			[' ', 'Comparefaces', 'comparebucket'],
+			[' ', 'Labelimage', 'labelit'],
 			[' ', 'DetectText', 'detectit'],
 			['w', 'translate %s', 'translate', 'Hello'],
 			['r', 'translatedText', 'getTranslatedText']
