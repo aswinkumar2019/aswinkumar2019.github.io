@@ -101,12 +101,28 @@ new(function () {
 		});
 	}
 	
+	
+	function detectit(bucketsource) {
+		var detecting = {
+			 Image: { /* required */
+                         Bytes: new Buffer('...') || 'STRING_VALUE' /* Strings will be Base-64 encoded on your behalf */,
+                         S3Object: {
+                         Bucket: 'STRING_VALUE',
+                         Name: 'STRING_VALUE',
+                         Version: 'STRING_VALUE'
+                             }
+                            }
+                          };
+                 rekognition.detectText(detecting, function(err, data) {
+                 if (err) console.log(err, err.stack); // an error occurred
+                 else     console.log(data);           // successful response
+});
 	function labelthem(bucketsource) {
 		var labeling = {
 			Image: {
                         S3Object: {
                         Bucket: bucketsource, 
-                        Name: "IMG_20190118_174505.jpg"
+                        Name: "myphoto"
                             }
                         }, 
                         MaxLabels: 123, 
@@ -188,7 +204,10 @@ new(function () {
 
 		initAWSServices(region);
 	};
-	
+	ext.detectit = function () {
+		bucketsource = "youcode"
+		detectit(bucketsource)
+	};
 	ext.labelit = function () {
 		bucketsource = "youcode"
 		labelthem(bucketsource)
@@ -255,8 +274,9 @@ new(function () {
 
 			[' ', 'choose source language %m.sourceLanguages', 'setSourceLanguage', 'English'],
 			[' ', 'choose target language %m.targetLanguages', 'setTargetLanguage', 'Spanish'],
-			[' ', 'compare', 'comparebucket'],
-			[' ', 'label', 'labelit'],
+			[' ', 'Compare', 'comparebucket'],
+			[' ', 'LabelText', 'labelit'],
+			[' ', 'DetectText', 'Detectit'],
 			['w', 'translate %s', 'translate', 'Hello'],
 			['r', 'translatedText', 'getTranslatedText']
 
