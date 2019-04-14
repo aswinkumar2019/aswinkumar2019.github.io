@@ -192,6 +192,7 @@ new(function () {
 	ext.labelit = function () {
 		bucketsource = "youcode"
 		labelthem(bucketsource)
+	};
 	ext.comparebucket = function () {
 		bucketsource = "youcode"
 		bucketinput = "youcode"
