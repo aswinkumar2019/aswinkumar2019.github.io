@@ -107,7 +107,7 @@ new(function () {
 			 Image: {
                          S3Object: {
                          Bucket: bucketsource,
-                         Name: "Screenshot+from+2019-04-14+12-07-16.png",
+                         Name: "IMG_20190415_113835.jpg",
                              }
                             }
                           };
