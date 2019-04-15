@@ -6,7 +6,9 @@ new(function () {
 
 	var accessKeyId = '';
 	var secretAccessKey = '';
-
+        var bucketsource;
+	var sourceimg;
+	var inputimg;
 	var polly;
         var Rekognition;
 	var voice = 'Joanna';
@@ -102,12 +104,12 @@ new(function () {
 	}
 	
 	
-	function detectthem(bucketsource) {
+	function detectthem() {
 		var detecting = {
 			 Image: {
                          S3Object: {
                          Bucket: bucketsource,
-                         Name: "IMG_20190415_113835.jpg",
+                         Name: sourceimg,
                              }
                             }
                           };
@@ -116,12 +118,12 @@ new(function () {
                  else     console.log(data);           // successful response
            });
 	}
-	function labelthem(bucketsource) {
+	function labelthem() {
 		var labeling = {
 			Image: {
                         S3Object: {
                         Bucket: bucketsource, 
-                        Name: "IMG_20190118_174505.jpg"
+                        Name: sourceimg
                             }
                         }, 
                         MaxLabels: 123, 
@@ -130,40 +132,23 @@ new(function () {
         rekognition.detectLabels(labeling, function(err, data) {
                 if (err) console.log(err, err.stack); // an error occurred
                 else     console.log(data);           // successful response
-   /*
-   data = {
-    Labels: [
-       {
-      Confidence: 99.25072479248047, 
-      Name: "People"
-     }, 
-       {
-      Confidence: 99.25074005126953, 
-      Name: "Person"
-     }
-    ]
-   }
-   */
-             });
-	}
-
-	function comparethem(bucketsource, bucketinput) {
+		
+	function comparethem() {
 		var comparams = {
 			SimilarityThreshold: 20,
 			SourceImage: {
 				S3Object: {
 					Bucket: bucketsource,
-					Name: "IMG_20190118_174505.jpg"
+					Name: sourceimg
 				}
 			},
 			TargetImage: {
 				S3Object: {
-					Bucket: bucketinput,
-					Name: "IMG_20181105_161625.jpg"
+					Bucket: bucketsource,
+					Name: inputimg
 				}
 			}
 		};
-		prompt("Hello")
 		rekognition.compareFaces(comparams, function (err, data) {
 			if (err) console.log(err, err.stack); // an error occurred
 			else console.log(data); // successful response
@@ -200,22 +185,20 @@ new(function () {
 			accessKeyId = prompt("Enter the access ID")
 		if (secretAccessKey === '')
 			secretAccessKey = prompt("Enter the access key")
+		bucketsource = prompt("Enter the bucket link")
+		sourceimg = prompt("Enter image source link if there is any,else leave it blank")
+		inputimg = prompt("Enter input image link if there is any,else leave it blank"
 
 		initAWSServices(region);
 	};
 	ext.detectit = function () {
-		bucketsource = "youcode"
-		detectthem(bucketsource);
+		detectthem();
 	};
 	ext.labelit = function () {
-		bucketsource = "youcode"
-		labelthem(bucketsource)
+		labelthem();
 	};
 	ext.comparebucket = function () {
-		bucketsource = "youcode"
-		bucketinput = "youcode"
-		speak("I am inside");
-		comparethem(bucketsource, bucketinput);
+		comparethem();
 	};
 
 	// Polly services
