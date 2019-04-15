@@ -101,59 +101,8 @@ new(function () {
 				playAudioFromUrl(url, callback);
 			}
 		});
-	}
-	
-	
-	function detectthem() {
-		var detecting = {
-			 Image: {
-                         S3Object: {
-                         Bucket: bucketsource,
-                         Name: sourceimg,
-                             }
-                            }
-                          };
-                 rekognition.detectText(detecting, function(err, data) {
-                 if (err) console.log(err, err.stack); // an error occurred
-                 else     console.log(data);           // successful response
-           });
-	}
-	function labelthem() {
-		var labeling = {
-			Image: {
-                        S3Object: {
-                        Bucket: bucketsource, 
-                        Name: sourceimg
-                            }
-                        }, 
-                        MaxLabels: 123, 
-                        MinConfidence: 70
-                        };
-        rekognition.detectLabels(labeling, function(err, data) {
-                if (err) console.log(err, err.stack); // an error occurred
-                else     console.log(data);           // successful response
-		
-	function comparethem() {
-		var comparams = {
-			SimilarityThreshold: 20,
-			SourceImage: {
-				S3Object: {
-					Bucket: bucketsource,
-					Name: sourceimg
-				}
-			},
-			TargetImage: {
-				S3Object: {
-					Bucket: bucketsource,
-					Name: inputimg
-				}
-			}
-		};
-		rekognition.compareFaces(comparams, function (err, data) {
-			if (err) console.log(err, err.stack); // an error occurred
-			else console.log(data); // successful response
-		});
-	}
+	};
+
 
 	function translateText(text, sourceLang, targetLang, translationHandler) {
 		var params = {
@@ -192,13 +141,55 @@ new(function () {
 		initAWSServices(region);
 	};
 	ext.detectit = function () {
-		detectthem();
+		var detecting = {
+			 Image: {
+                         S3Object: {
+                         Bucket: bucketsource,
+                         Name: sourceimg,
+                             }
+                            }
+                          };
+                 rekognition.detectText(detecting, function(err, data) {
+                 if (err) console.log(err, err.stack); // an error occurred
+                 else     console.log(data);           // successful response
+           });
 	};
 	ext.labelit = function () {
-		labelthem();
+		var labeling = {
+			Image: {
+                        S3Object: {
+                        Bucket: bucketsource, 
+                        Name: sourceimg
+                            }
+                        }, 
+                        MaxLabels: 123, 
+                        MinConfidence: 70
+                        };
+        rekognition.detectLabels(labeling, function(err, data) {
+                if (err) console.log(err, err.stack); // an error occurred
+                else     console.log(data);           // successful response
+	});
 	};
 	ext.comparebucket = function () {
-		comparethem();
+		var comparams = {
+			SimilarityThreshold: 20,
+			SourceImage: {
+				S3Object: {
+					Bucket: bucketsource,
+					Name: sourceimg
+				}
+			},
+			TargetImage: {
+				S3Object: {
+					Bucket: bucketsource,
+					Name: inputimg
+				}
+			}
+		};
+		rekognition.compareFaces(comparams, function (err, data) {
+			if (err) console.log(err, err.stack); // an error occurred
+			else console.log(data); // successful response
+		});
 	};
 
 	// Polly services
