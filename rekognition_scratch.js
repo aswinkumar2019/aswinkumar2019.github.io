@@ -187,7 +187,7 @@ new(function () {
 			secretAccessKey = prompt("Enter the access key")
 		bucketsource = prompt("Enter the bucket link")
 		sourceimg = prompt("Enter image source link if there is any,else leave it blank")
-		inputimg = prompt("Enter input image link if there is any,else leave it blank"
+		inputimg = prompt("Enter input image link if there is any,else leave it blank")
 
 		initAWSServices(region);
 	};
