@@ -16,8 +16,8 @@ new(function () {
 
 	var languages = {
 		'Chinese': {
-			pollyVoice: 'Lucia',
-			translateCode: 'cmn',
+			pollyVoice: 'Joanna',
+			translateCode: 'zh',
 		},
 		'English': {
 			pollyVoice: 'Joanna',
@@ -272,7 +272,7 @@ new(function () {
 			['-'],
 
 			[' ', 'choose source language %m.sourceLanguages', 'setSourceLanguage', 'English'],
-			[' ', 'choose target language %m.targetLanguages', 'setTargetLanguage', 'Spanish'],
+			[' ', 'choose target language %m.targetLanguages', 'setTargetLanguage', 'Chinese'],
 			[' ', 'Comparefaces', 'comparebucket'],
 			[' ', 'Labelimage', 'labelit'],
 			[' ', 'DetectText', 'detectit'],
@@ -281,7 +281,7 @@ new(function () {
 
 		],
 		menus: {
-			languages: ['English', 'Spanish', 'Turkish', 'French', 'German', 'Italian'],
+			languages: ['English', 'Spanish', 'Turkish', 'French', 'German', 'Italian', 'Chinese'],
 			sourceLanguages: ['English', 'Spanish', 'Turkish', 'French', 'German', 'Italian', 'Chinese'],
 			targetLanguages: ['English', 'Spanish', 'Turkish', 'French', 'German', 'Italian', 'Chinese']
 		},
