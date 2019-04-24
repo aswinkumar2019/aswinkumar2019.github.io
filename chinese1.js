@@ -214,7 +214,6 @@ new(function () {
 	ext.comparebucket = function () {
 		bucketsource = "youcode"
 		bucketinput = "youcode"
-		speak("I am inside");
 		comparethem(bucketsource, bucketinput);
 	};
 
