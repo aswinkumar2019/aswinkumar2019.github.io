@@ -81,12 +81,19 @@ new(function () {
 	}
 
 	function speak(txt, voiceId, callback) {
-		var params = {
+		if (lang === 'Chinese')
+		      var params = {
+			OutputFormat: 'mp3',
+			LanguageCode: cmn-CN,
+			Text: txt,
+			VoiceId: voiceId,
+		       };
+                else
+			var params = {
 			OutputFormat: 'mp3',
 			Text: txt,
 			VoiceId: voiceId,
-		};
-
+		       };
 		polly.synthesizeSpeech(params, function (err, data) {
 			if (err)
 				console.log(err, err.stack);
