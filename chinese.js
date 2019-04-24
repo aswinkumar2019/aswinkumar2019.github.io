@@ -281,7 +281,7 @@ new(function () {
 
 		],
 		menus: {
-			languages: ['English', 'Spanish', 'Turkish', 'French', 'German', 'Italian'],
+			languages: ['English', 'Spanish', 'Turkish', 'French', 'German', 'Italian', 'Chinese'],
 			sourceLanguages: ['English', 'Spanish', 'Turkish', 'French', 'German', 'Italian', 'Chinese'],
 			targetLanguages: ['English', 'Spanish', 'Turkish', 'French', 'German', 'Italian', 'Chinese']
 		},
