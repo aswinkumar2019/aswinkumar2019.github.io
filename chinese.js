@@ -87,7 +87,6 @@ new(function () {
 			OutputFormat: 'mp3',
 			Text: txt,
 			VoiceId: voiceId,
-			LanguageCode: cmn-CN,
 		};
 
 		polly.synthesizeSpeech(params, function (err, data) {
