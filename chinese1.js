@@ -81,16 +81,9 @@ new(function () {
 	}
 
 	function speak(txt, voiceId, callback) {
-		if (lang === 'Chinese')
 		      var params = {
 			OutputFormat: 'mp3',
-			LanguageCode: cmn-CN,
-			Text: txt,
-			VoiceId: voiceId,
-		       };
-                else
-			var params = {
-			OutputFormat: 'mp3',
+			LanguageCode: 'cmn-CN',
 			Text: txt,
 			VoiceId: voiceId,
 		       };
