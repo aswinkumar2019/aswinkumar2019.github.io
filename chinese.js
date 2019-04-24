@@ -16,7 +16,7 @@ new(function () {
 
 	var languages = {
 		'Chinese': {
-			pollyVoice: 'Lucia',
+			pollyVoice: 'Joanna',
 			translateCode: 'zh',
 		},
 		'English': {
@@ -130,22 +130,7 @@ new(function () {
         rekognition.detectLabels(labeling, function(err, data) {
                 if (err) console.log(err, err.stack); // an error occurred
                 else     console.log(data);           // successful response
-   /*
-   data = {
-    Labels: [
-       {
-      Confidence: 99.25072479248047, 
-      Name: "People"
-     }, 
-       {
-      Confidence: 99.25074005126953, 
-      Name: "Person"
-     }
-    ]
-   }
-   */
-             });
-	}
+
 
 	function comparethem(bucketsource, bucketinput) {
 		var comparams = {
