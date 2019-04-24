@@ -83,7 +83,7 @@ new(function () {
 	function speak(txt, voiceId, callback) {
 		      var params = {
 			OutputFormat: 'mp3',
-			LanguageCode: 'cmn-CN',
+			LanguageCode: cmn-CN,
 			Text: txt,
 			VoiceId: voiceId,
 		       };
