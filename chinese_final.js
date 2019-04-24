@@ -17,7 +17,7 @@ new(function () {
 	var languages = {
 		'Chinese': {
 			pollyVoice: 'Lucia',
-			translateCode: 'cmn',
+			translateCode: 'zh',
 		},
 		'English': {
 			pollyVoice: 'Joanna',
@@ -85,6 +85,8 @@ new(function () {
 			OutputFormat: 'mp3',
 			Text: txt,
 			VoiceId: voiceId,
+			LanguageCode: en-IN | cmn-CN,
+			
 		};
 
 		polly.synthesizeSpeech(params, function (err, data) {
@@ -130,20 +132,6 @@ new(function () {
         rekognition.detectLabels(labeling, function(err, data) {
                 if (err) console.log(err, err.stack); // an error occurred
                 else     console.log(data);           // successful response
-   /*
-   data = {
-    Labels: [
-       {
-      Confidence: 99.25072479248047, 
-      Name: "People"
-     }, 
-       {
-      Confidence: 99.25074005126953, 
-      Name: "Person"
-     }
-    ]
-   }
-   */
              });
 	}
 
@@ -272,7 +260,7 @@ new(function () {
 			['-'],
 
 			[' ', 'choose source language %m.sourceLanguages', 'setSourceLanguage', 'English'],
-			[' ', 'choose target language %m.targetLanguages', 'setTargetLanguage', 'Spanish'],
+			[' ', 'choose target language %m.targetLanguages', 'setTargetLanguage', 'Chinese'],
 			[' ', 'Comparefaces', 'comparebucket'],
 			[' ', 'Labelimage', 'labelit'],
 			[' ', 'DetectText', 'detectit'],
@@ -281,7 +269,7 @@ new(function () {
 
 		],
 		menus: {
-			languages: ['English', 'Spanish', 'Turkish', 'French', 'German', 'Italian'],
+			languages: ['English', 'Spanish', 'Turkish', 'French', 'German', 'Italian','Chinese'],
 			sourceLanguages: ['English', 'Spanish', 'Turkish', 'French', 'German', 'Italian', 'Chinese'],
 			targetLanguages: ['English', 'Spanish', 'Turkish', 'French', 'German', 'Italian', 'Chinese']
 		},
