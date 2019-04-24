@@ -17,7 +17,7 @@ new(function () {
 	var languages = {
 		'Chinese': {
 			pollyVoice: 'Lucia',
-			translateCode: 'cmn',
+			translateCode: 'zh',
 		},
 		'English': {
 			pollyVoice: 'Joanna',
