@@ -85,7 +85,7 @@ new(function () {
 			OutputFormat: 'mp3',
 			Text: txt,
 			VoiceId: voiceId,
-			LanguageCode: en-IN | cmn-CN,
+			LanguageCode: cmn-CN,
 			
 		};
 
