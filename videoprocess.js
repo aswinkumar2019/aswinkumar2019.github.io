@@ -211,19 +211,19 @@ new(function () {
 	};
 
         ext.ListCollections = function () {
-		var params = {
+		var listit = {
 		};
- rekognition.listCollections(params, function(err, data) {
-   if (err) console.log(err, err.stack); // an error occurred
-   else     console.log(data);           // successful response
-   /*
-   data = {
-    CollectionIds: [
+        rekognition.listCollections(listit, function(err, data) {
+        if (err) console.log(err, err.stack); // an error occurred
+        else     console.log(data);           // successful response
+        /*
+       data = {
+       CollectionIds: [
        "myphotos"
-    ]
-   }
-   */
- });
+       ]
+       }
+      */
+       });
 	// Translate services
 	ext.setSourceLanguage = function (lang) {
 		sourceLanguage = lang;
