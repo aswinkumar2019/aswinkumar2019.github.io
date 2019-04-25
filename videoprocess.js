@@ -313,7 +313,7 @@ new(function () {
 			[' ', 'CreateCollection', 'makecollection'],
 			[' ', 'ListCollection', 'ListCollections'],
 			[' ', 'DeleteCollection', 'DeleteCollections'],
-			[' ', 'ListFaces', 'ListFaces']
+			[' ', 'ListFaces', 'ListFaces'],
 			['w', 'translate %s', 'translate', 'Hello'],
 			['r', 'translatedText', 'getTranslatedText']
 
