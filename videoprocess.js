@@ -192,6 +192,14 @@ new(function () {
 		});
 	};
 
+	ext.makecollection = function (name) {
+		var collect = {
+                CollectionId: name /* required */
+       };
+        rekognition.createCollection(collect, function(err, data) {
+            if (err) console.log(err, err.stack); // an error occurred
+            else     console.log(data);           // successful response
+            });
 	// Polly services
 	ext.setLanguage = function (lang) {
 		language = lang;
@@ -202,7 +210,20 @@ new(function () {
 		speak(text, voice, callback);
 	};
 
-
+        ext.ListCollections = function () {
+		var params = {
+		};
+ rekognition.listCollections(params, function(err, data) {
+   if (err) console.log(err, err.stack); // an error occurred
+   else     console.log(data);           // successful response
+   /*
+   data = {
+    CollectionIds: [
+       "myphotos"
+    ]
+   }
+   */
+ });
 	// Translate services
 	ext.setSourceLanguage = function (lang) {
 		sourceLanguage = lang;
@@ -250,6 +271,8 @@ new(function () {
 			[' ', 'Comparefaces', 'comparebucket'],
 			[' ', 'Labelimage', 'labelit'],
 			[' ', 'DetectText', 'detectit'],
+			[' ', 'CreateCollection', 'makecollection', 'Name'],
+			[' ', 'ListCollection', 'ListCollections'],
 			['w', 'translate %s', 'translate', 'Hello'],
 			['r', 'translatedText', 'getTranslatedText']
 
