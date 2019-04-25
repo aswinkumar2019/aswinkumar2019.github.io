@@ -200,7 +200,7 @@ new(function () {
 	};
 	// Translate services
 	
-	ext.ListFaces = function () {
+	ext.IndexFaces = function () {
 		var name = prompt("Enter the name of collection");
 		var category = prompt("Enter the category");
 		var params = {
@@ -235,6 +235,19 @@ new(function () {
           */
         });
 	};
+	
+	ext.ListFaces = function () {
+		var name = prompt("Enter the name of the collection");
+	        var params = {
+                CollectionId: name, 
+                MaxResults: 20
+            };
+        rekognition.listFaces(params, function(err, data) {
+        if (err) console.log(err, err.stack); // an error occurred
+        else     console.log(data);           // successful response
+	});
+	};
+	
 	ext.setSourceLanguage = function (lang) {
 		sourceLanguage = lang;
 	};
@@ -271,7 +284,8 @@ new(function () {
 			[' ', 'CreateCollection', 'makecollection'],
 			[' ', 'ListCollection', 'ListCollections'],
 			[' ', 'DeleteCollection', 'DeleteCollections'],
-			[' ', 'ListFaces', 'ListFaces'],
+			[' ', 'IndexFaces', 'IndexFaces'],
+			[' ', 'ListFaces', 'ListFaces']
 			],
 		menus: {
 			languages: ['English', 'Spanish', 'Turkish', 'French', 'German', 'Italian', 'Chinese'],
