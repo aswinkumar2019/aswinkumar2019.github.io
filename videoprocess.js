@@ -192,7 +192,8 @@ new(function () {
 		});
 	};
 
-	ext.makecollection = function (name) {
+	ext.makecollection = function () {
+		var name = prompt("Enter the name of collection");
 		var collect = {
                 CollectionId: name /* required */
        };
@@ -273,7 +274,7 @@ new(function () {
 			[' ', 'Comparefaces', 'comparebucket'],
 			[' ', 'Labelimage', 'labelit'],
 			[' ', 'DetectText', 'detectit'],
-			['w', 'CreateCollection %s', 'makecollection', 'Name'],
+			[' ', 'CreateCollection', 'makecollection'],
 			[' ', 'ListCollection', 'ListCollections'],
 			['w', 'translate %s', 'translate', 'Hello'],
 			['r', 'translatedText', 'getTranslatedText']
