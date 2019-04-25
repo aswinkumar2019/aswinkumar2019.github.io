@@ -273,7 +273,7 @@ new(function () {
 			[' ', 'Comparefaces', 'comparebucket'],
 			[' ', 'Labelimage', 'labelit'],
 			[' ', 'DetectText', 'detectit'],
-			[' ', 'CreateCollection', 'makecollection', 'Name'],
+			['w', 'CreateCollection %s', 'makecollection', 'Name'],
 			[' ', 'ListCollection', 'ListCollections'],
 			['w', 'translate %s', 'translate', 'Hello'],
 			['r', 'translatedText', 'getTranslatedText']
