@@ -229,7 +229,27 @@ new(function () {
 	};
 	// Translate services
 	
-	ext.DeleteCollections =function () {
+	ext.ListFaces = function () {
+		var name = prompt("Enter the name of collection");
+		var category = prompt("Enter the category");
+		var params = {
+                    CollectionId: name, 
+                    DetectionAttributes: [
+                    ], 
+                    ExternalImageId: category, 
+                    Image: {
+                    S3Object: {
+                    Bucket: bucketsource, 
+                    Name: sourceimg
+                     }
+                    }
+                    };
+         rekognition.indexFaces(params, function(err, data) {
+         if (err) console.log(err, err.stack); // an error occurred
+         else     console.log(data);           // successful response
+	 });
+	};
+       ext.DeleteCollections =function () {
 		 var name = prompt("Enter the collection to delete");
 		 var params = {
                  CollectionId: name
@@ -293,6 +313,7 @@ new(function () {
 			[' ', 'CreateCollection', 'makecollection'],
 			[' ', 'ListCollection', 'ListCollections'],
 			[' ', 'DeleteCollection', 'DeleteCollections'],
+			[' ', 'ListFaces', 'ListFaces']
 			['w', 'translate %s', 'translate', 'Hello'],
 			['r', 'translatedText', 'getTranslatedText']
 
