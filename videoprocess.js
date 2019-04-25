@@ -200,6 +200,7 @@ new(function () {
             if (err) console.log(err, err.stack); // an error occurred
             else     console.log(data);           // successful response
             });
+	};
 	// Polly services
 	ext.setLanguage = function (lang) {
 		language = lang;
@@ -224,6 +225,7 @@ new(function () {
        }
       */
        });
+	};
 	// Translate services
 	ext.setSourceLanguage = function (lang) {
 		sourceLanguage = lang;
