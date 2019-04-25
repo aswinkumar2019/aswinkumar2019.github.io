@@ -140,36 +140,7 @@ new(function () {
 
 		initAWSServices(region);
 	};
-	ext.detectit = function () {
-		var detecting = {
-			 Image: {
-                         S3Object: {
-                         Bucket: bucketsource,
-                         Name: sourceimg,
-                             }
-                            }
-                          };
-                 rekognition.detectText(detecting, function(err, data) {
-                 if (err) console.log(err, err.stack); // an error occurred
-                 else     console.log(data);           // successful response
-           });
-	};
-	ext.labelit = function () {
-		var labeling = {
-			Image: {
-                        S3Object: {
-                        Bucket: bucketsource, 
-                        Name: sourceimg
-                            }
-                        }, 
-                        MaxLabels: 123, 
-                        MinConfidence: 70
-                        };
-        rekognition.detectLabels(labeling, function(err, data) {
-                if (err) console.log(err, err.stack); // an error occurred
-                else     console.log(data);           // successful response
-	});
-	};
+	
 	ext.comparebucket = function () {
 		var comparams = {
 			SimilarityThreshold: 20,
@@ -272,17 +243,6 @@ new(function () {
 		targetLanguage = lang;
 	};
 
-	ext.translate = function (text, callback) {
-		translateText(text, sourceLanguage, targetLanguage, function (txt) {
-			translatedText = txt;
-			callback();
-		});
-	};
-
-	ext.getTranslatedText = function () {
-		return translatedText;
-	}
-
 	ext._shutdown = function () {};
 
 	ext._getStatus = function () {
@@ -308,16 +268,11 @@ new(function () {
 			[' ', 'choose source language %m.sourceLanguages', 'setSourceLanguage', 'English'],
 			[' ', 'choose target language %m.targetLanguages', 'setTargetLanguage', 'Chinese'],
 			[' ', 'Comparefaces', 'comparebucket'],
-			[' ', 'Labelimage', 'labelit'],
-			[' ', 'DetectText', 'detectit'],
 			[' ', 'CreateCollection', 'makecollection'],
 			[' ', 'ListCollection', 'ListCollections'],
 			[' ', 'DeleteCollection', 'DeleteCollections'],
 			[' ', 'ListFaces', 'ListFaces'],
-			['w', 'translate %s', 'translate', 'Hello'],
-			['r', 'translatedText', 'getTranslatedText']
-
-		],
+			],
 		menus: {
 			languages: ['English', 'Spanish', 'Turkish', 'French', 'German', 'Italian', 'Chinese'],
 			sourceLanguages: ['English', 'Spanish', 'Turkish', 'French', 'German', 'Italian', 'Chinese'],
