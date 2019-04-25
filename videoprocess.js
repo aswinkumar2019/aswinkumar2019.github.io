@@ -228,6 +228,22 @@ new(function () {
        });
 	};
 	// Translate services
+	
+	ext.DeleteCollections =function () {
+		 var name = prompt("Enter the collection to delete");
+		 var params = {
+                 CollectionId: name
+                 };
+        rekognition.deleteCollection(params, function(err, data) {
+          if (err) console.log(err, err.stack); // an error occurred
+          else     console.log(data);           // successful response
+          /*
+          data = {
+          StatusCode: 200
+          }
+          */
+        });
+	};
 	ext.setSourceLanguage = function (lang) {
 		sourceLanguage = lang;
 	};
@@ -276,6 +292,7 @@ new(function () {
 			[' ', 'DetectText', 'detectit'],
 			[' ', 'CreateCollection', 'makecollection'],
 			[' ', 'ListCollection', 'ListCollections'],
+			[' ', 'DeleteCollection', 'DeleteCollections'],
 			['w', 'translate %s', 'translate', 'Hello'],
 			['r', 'translatedText', 'getTranslatedText']
 
