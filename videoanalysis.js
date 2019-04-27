@@ -242,6 +242,7 @@ new(function () {
 		var jobID = prompt("Enter the ID which you like to give for this process");
 		var snstopicarn = prompt("Enter the ARN value of the SNS topic");
 		var faceattributes = prompt("Enter the face attributes to find,values are DEFAULT or ALL");
+		var clientreqtoken = prompt("Enter unique client request token to avoid problem with jobid");
 		var params = {
                              Video: { /* required */
                              S3Object: {
@@ -250,7 +251,7 @@ new(function () {
                              Version: 'STRING_VALUE'
                                }
                              },
-                            ClientRequestToken: 'STRING_VALUE',
+                            ClientRequestToken: clientreqtoken,
                             FaceAttributes: faceattributes,
                             JobTag: jobID,
                             NotificationChannel: {
@@ -266,9 +267,8 @@ new(function () {
 	
 	ext.GetFaceDetection = function () {
 		var params = {
-                           JobId: 'STRING_VALUE', /* required */
-                           MaxResults: 'NUMBER_VALUE',
-                           NextToken: 'STRING_VALUE'
+                           JobId: jobID, /* required */
+                           MaxResults: 1000,
                            };
                 rekognition.getFaceDetection(params, function(err, data) {
                 if (err) console.log(err, err.stack); // an error occurred
