@@ -2,7 +2,7 @@ new(function () {
 
 	var ext = this;
 
-	$.getScript('https://https://github.com/aswinkumar2019/aswinkumar2019.github.io/aws_sdk.js', initExtension);
+	$.getScript('https://github.com/aswinkumar2019/aswinkumar2019.github.io/aws_sdk.js', initExtension);
 
 	var accessKeyId = '';
 	var secretAccessKey = '';
