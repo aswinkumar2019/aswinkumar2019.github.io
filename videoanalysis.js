@@ -10,7 +10,7 @@ new(function () {
 	var sourceimg;
 	var inputimg;
 	var polly;
-        var Rekognition;
+	var rekognition;
 	var voice = 'Joanna';
 	var language = 'English';
 	var sourceLanguage = 'English';
