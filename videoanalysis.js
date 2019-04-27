@@ -246,9 +246,9 @@ new(function () {
 		var params = {
                              Video: { /* required */
                              S3Object: {
-                             Bucket: 'STRING_VALUE',
-                             Name: 'STRING_VALUE',
-                             Version: 'STRING_VALUE'
+                             Bucket: bucketsource,
+                             Name: sourceimg
+                             //Version: 'STRING_VALUE'
                                }
                              },
                             ClientRequestToken: clientreqtoken,
