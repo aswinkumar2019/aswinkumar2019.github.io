@@ -241,6 +241,7 @@ new(function () {
 		var rolearn = prompt("Enter the Role ARN which gives permissions to access SNS");
 		var jobID = prompt("Enter the ID which you like to give for this process");
 		var snstopicarn = prompt("Enter the ARN value of the SNS topic");
+		var faceattributes = prompt("Enter the face attributes to find,values are DEFAULT or ALL");
 		var params = {
                              Video: { /* required */
                              S3Object: {
@@ -250,7 +251,7 @@ new(function () {
                                }
                              },
                             ClientRequestToken: 'STRING_VALUE',
-                            FaceAttributes: DEFAULT | ALL,
+                            FaceAttributes: faceattributes,
                             JobTag: jobID,
                             NotificationChannel: {
                             RoleArn: rolearn, /* required */
