@@ -266,8 +266,9 @@ new(function () {
 	};
 	
 	ext.GetFaceDetection = function () {
+		var jobid = prompt("Enter the job ID")
 		var params = {
-                           JobId: jobID, /* required */
+                           JobId: jobid, /* required */
                            MaxResults: 1000,
                            };
                 rekognition.getFaceDetection(params, function(err, data) {
