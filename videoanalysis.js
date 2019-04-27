@@ -135,8 +135,9 @@ new(function () {
 		if (secretAccessKey === '')
 			secretAccessKey = prompt("Enter the access key")
 		bucketsource = prompt("Enter the bucket link")
-		sourceimg = prompt("Enter image source link if there is any,else leave it blank")
+		sourceimg = prompt("Enter image or video source link if there is any,else leave it blank")
 		inputimg = prompt("Enter input image link if there is any,else leave it blank")
+		
 
 		initAWSServices(region);
 	};
@@ -254,10 +255,22 @@ new(function () {
                                }
                               };
                        	};
-rekognition.startFaceDetection(params, function(err, data) {
-  if (err) console.log(err, err.stack); // an error occurred
-  else     console.log(data);           // successful response
-});
+        rekognition.startFaceDetection(params, function(err, data) {
+         if (err) console.log(err, err.stack); // an error occurred
+         else     console.log(data);           // successful response
+         });
+	
+	ext.GetFaceDetection = function () {
+		var params = {
+                           JobId: 'STRING_VALUE', /* required */
+                           MaxResults: 'NUMBER_VALUE',
+                           NextToken: 'STRING_VALUE'
+                           };
+                rekognition.getFaceDetection(params, function(err, data) {
+                if (err) console.log(err, err.stack); // an error occurred
+                else     console.log(data);           // successful response
+                });
+	       };
 	
 	ext.ListFaces = function () {
 		var name = prompt("Enter the name of the collection");
@@ -308,6 +321,7 @@ rekognition.startFaceDetection(params, function(err, data) {
 			[' ', 'ListCollection', 'ListCollections'],
 			[' ', 'DeleteCollection', 'DeleteCollections'],
 			[' ', 'VideoFaceDetection', 'VideoFaceDetection'],
+			[' ', 'GetFaceDetection', 'GetFaceDetection'],
 			[' ', 'IndexFaces', 'IndexFaces'],
 			[' ', 'ListFaces', 'ListFaces']
 			],
