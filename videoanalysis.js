@@ -236,6 +236,29 @@ new(function () {
         });
 	};
 	
+	ext.VideoFaceDetection = function () {
+		var params = {
+                             Video: { /* required */
+                             S3Object: {
+                             Bucket: 'STRING_VALUE',
+                             Name: 'STRING_VALUE',
+                             Version: 'STRING_VALUE'
+                               }
+                             },
+                            ClientRequestToken: 'STRING_VALUE',
+                            FaceAttributes: DEFAULT | ALL,
+                            JobTag: 'STRING_VALUE',
+                            NotificationChannel: {
+                            RoleArn: 'STRING_VALUE', /* required */
+                            SNSTopicArn: 'STRING_VALUE' /* required */
+                               }
+                              };
+                       	};
+rekognition.startFaceDetection(params, function(err, data) {
+  if (err) console.log(err, err.stack); // an error occurred
+  else     console.log(data);           // successful response
+});
+	
 	ext.ListFaces = function () {
 		var name = prompt("Enter the name of the collection");
 	        var params = {
@@ -284,6 +307,7 @@ new(function () {
 			[' ', 'CreateCollection', 'makecollection'],
 			[' ', 'ListCollection', 'ListCollections'],
 			[' ', 'DeleteCollection', 'DeleteCollections'],
+			[' ', 'VideoFaceDetection', 'VideoFaceDetection'],
 			[' ', 'IndexFaces', 'IndexFaces'],
 			[' ', 'ListFaces', 'ListFaces']
 			],
