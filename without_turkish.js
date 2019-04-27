@@ -255,9 +255,9 @@ new(function () {
 
 		],
 		menus: {
-			languages: ['English', 'Spanish', 'Turkish', 'French', 'German', 'Italian', 'Chinese'],
-			sourceLanguages: ['English', 'Spanish', 'Turkish', 'French', 'German', 'Italian', 'Chinese'],
-			targetLanguages: ['English', 'Spanish', 'Turkish', 'French', 'German', 'Italian', 'Chinese']
+			languages: ['English', 'Spanish', 'French', 'German', 'Italian', 'Chinese'],
+			sourceLanguages: ['English', 'Spanish', 'French', 'German', 'Italian', 'Chinese'],
+			targetLanguages: ['English', 'Spanish', 'French', 'German', 'Italian', 'Chinese']
 		},
 	};
 
