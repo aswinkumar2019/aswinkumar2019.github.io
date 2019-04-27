@@ -238,6 +238,9 @@ new(function () {
 	};
 	
 	ext.VideoFaceDetection = function () {
+		var rolearn = prompt("Enter the Role ARN which gives permissions to access SNS");
+		var jobID = prompt("Enter the ID which you like to give for this process");
+		var snstopicarn = prompt("Enter the ARN value of the SNS topic");
 		var params = {
                              Video: { /* required */
                              S3Object: {
@@ -248,10 +251,10 @@ new(function () {
                              },
                             ClientRequestToken: 'STRING_VALUE',
                             FaceAttributes: DEFAULT | ALL,
-                            JobTag: 'STRING_VALUE',
+                            JobTag: jobID,
                             NotificationChannel: {
-                            RoleArn: 'STRING_VALUE', /* required */
-                            SNSTopicArn: 'STRING_VALUE' /* required */
+                            RoleArn: rolearn, /* required */
+                            SNSTopicArn: snstopicarn /* required */
                                }
                               };
                        	};
