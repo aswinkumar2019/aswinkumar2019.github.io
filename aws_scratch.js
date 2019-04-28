@@ -1,12 +1,3 @@
-/* 
-Scratch Extension for AWS AI Services Polly and Translate
-Created by Ceyhun OZGUN
-
-https://github.com/ceyhunozgun/awsAIScratchExtension
-
-Jul 2018
-*/
-
 new (function() {
 	
 	var ext = this;
