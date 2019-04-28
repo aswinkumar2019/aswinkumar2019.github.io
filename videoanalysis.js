@@ -265,6 +265,45 @@ new(function () {
          });
 	};
 	
+	ext.videopersontrack = function () {
+		var reqtoken = prompt("Enter a Req token");
+		var rolearn = prompt("Enter the IAM ARN which gives access to SNS");
+		var snsarn = prompt("Enter the ARN value of SNS service");
+		var jobid = prompt("Enter a unique job id");
+		var params = {
+                        Video: { /* required */
+                        S3Object: {
+                        Bucket: bucketsource,
+                        Name: sourceimg
+                           }
+                         },
+                        ClientRequestToken: reqtoken,
+                        JobTag: jobid,
+                        NotificationChannel: {
+                        RoleArn: rolearn, /* required */
+                        SNSTopicArn: snsarn /* required */
+                           }
+                        };
+         rekognition.startPersonTracking(params, function(err, data) {
+                       if (err) console.log(err, err.stack); // an error occurred
+                       else     console.log(data);           // successful response
+                         });
+	};
+	
+	ext.getpersontrack = function () {
+		var jobid = prompt("Enter the jobID");
+		var sort = prompt("Enter the type of sort,value may be INDEX or TIMESTAMP");
+		var params = {
+                            JobId: jobid, /* required */
+                            MaxResults: 1000,
+                            SortBy: sort
+                            };
+                rekognition.getPersonTracking(params, function(err, data) {
+                     if (err) console.log(err, err.stack); // an error occurred
+                     else     console.log(data);           // successful response
+                     });
+	};
+	
 	ext.GetFaceDetection = function () {
 		var jobid = prompt("Enter the job ID")
 		var params = {
@@ -327,6 +366,8 @@ new(function () {
 			[' ', 'DeleteCollection', 'DeleteCollections'],
 			[' ', 'VideoFaceDetection', 'VideoFaceDetection'],
 			[' ', 'GetFaceDetection', 'GetFaceDetection'],
+			[' ', 'VideoPersonTracking', 'videopersontrack'],
+			[' ', 'GetPersonTracking', 'getpersontrack'],
 			[' ', 'IndexFaces', 'IndexFaces'],
 			[' ', 'ListFaces', 'ListFaces']
 			],
