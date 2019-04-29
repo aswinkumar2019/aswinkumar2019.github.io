@@ -184,7 +184,8 @@ new(function () {
 			else console.log(data); // successful response
 			for (var i = 0, length = data.length; i < length; i++) {
                         for (obj in data[i]) {
-                        console.log(obj);
+                        alert(obj);
+			prompt("Press ok or cancel for next value");
                            }
                         }
 		});
