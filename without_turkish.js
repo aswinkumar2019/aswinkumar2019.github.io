@@ -188,7 +188,6 @@ new(function () {
 	// Polly services
 	ext.setLanguage = function (lang) {
 		language = lang;
-		voice = languages[language].pollyVoice;
 	};
 
 	ext.speak = function (text, callback) {
