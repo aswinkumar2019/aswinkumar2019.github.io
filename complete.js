@@ -182,9 +182,11 @@ new(function () {
 		rekognition.compareFaces(comparams, function (err, data) {
 			if (err) console.log(err, err.stack); // an error occurred
 			else console.log(data); // successful response
-			for (var i=0; i<data.length; i++) {
-                              Alert(" \n Similarity : " + i + data[0][i].Similarity);
-			}
+			for (var i = 0, length = data.length; i < length; i++) {
+                        for (obj in data[i]) {
+                        console.log(obj);
+                           }
+                        }
 		});
 	};
 
