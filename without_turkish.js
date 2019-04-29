@@ -257,7 +257,7 @@ new(function () {
 		},
 	};
 
-	ScratchExtensions.register('AWS AI Services', descriptor, ext);
+	ScratchExtensions.register('Youcode Intelligence Solutions(Preparing kids for AI future', descriptor, ext);
 	})();
 
 
