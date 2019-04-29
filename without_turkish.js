@@ -11,38 +11,31 @@ new(function () {
 	var inputimg;
 	var polly;
         var Rekognition;
-	var voice = 'Joanna';
 	var language = 'English';
 	var sourceLanguage = 'English';
 	var targetLanguage = 'Spanish';
+	var voice;
 
 	var languages = {
 		'Chinese': {
-			pollyVoice: 'Lucia',
 			translateCode: 'zh',
 		},
 		'English': {
-			pollyVoice: 'Joanna',
 			translateCode: 'en',
 		},
 		'Spanish': {
-			pollyVoice: 'Penelope',
 			translateCode: 'es',
 		},
 		'Turkish': {
-			pollyVoice: 'Filiz',
 			translateCode: 'tr',
 		},
 		'French': {
-			pollyVoice: 'Lea',
 			translateCode: 'fr',
 		},
 		'German': {
-			pollyVoice: 'Vicki',
 			translateCode: 'de',
 		},
 		'Italian': {
-			pollyVoice: 'Carla',
 			translateCode: 'it',
 		}
 	};
@@ -202,7 +195,9 @@ new(function () {
 		speak(text, voice, callback);
 	};
 
-
+        ext.setvoice = function (Voice) {
+		voice = Voice;
+	};
 	// Translate services
 	ext.setSourceLanguage = function (lang) {
 		sourceLanguage = lang;
@@ -247,6 +242,7 @@ new(function () {
 
 			[' ', 'choose source language %m.sourceLanguages', 'setSourceLanguage', 'English'],
 			[' ', 'choose target language %m.targetLanguages', 'setTargetLanguage', 'Chinese'],
+			[' ', 'Choose Voice %m.voices', 'setvoice', 'Lucia'],
 			[' ', 'Comparefaces', 'comparebucket'],
 			[' ', 'Labelimage', 'labelit'],
 			[' ', 'DetectText', 'detectit'],
@@ -256,6 +252,7 @@ new(function () {
 		],
 		menus: {
 			languages: ['English', 'Spanish', 'French', 'German', 'Italian', 'Chinese'],
+		        voices: ['Lucia', 'Joanna', 'Penelope', 'Filiz', 'Lea', 'Vicki', 'Carla'],
 			sourceLanguages: ['English', 'Spanish', 'French', 'German', 'Italian', 'Chinese'],
 			targetLanguages: ['English', 'Spanish', 'French', 'German', 'Italian', 'Chinese']
 		},
