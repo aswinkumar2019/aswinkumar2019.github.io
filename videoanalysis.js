@@ -328,6 +328,19 @@ new(function () {
               else     console.log(data);           // successful response
                });
 	};
+	
+	ext.getlabeldetection = function () {
+		var jobid = prompt("Enter the job id returned by startlabeldetection");
+		var sort = prompt("Enter the sort type,value maybe NAME or TIMESTAMP");
+		var params = {
+                         JobId: jobid, /* required */
+                         SortBy: sort
+                 };
+              rekognition.getLabelDetection(params, function(err, data) {
+                    if (err) console.log(err, err.stack); // an error occurred
+                    else     console.log(data);           // successful response
+                        });
+	            };
 	ext.GetFaceDetection = function () {
 		var jobid = prompt("Enter the job ID")
 		var params = {
@@ -393,6 +406,7 @@ new(function () {
 			[' ', 'VideoPersonTracking', 'videopersontrack'],
 			[' ', 'GetPersonTracking', 'getpersontrack'],
 			[' ', 'StartLabelDetection', 'startlabeldetection'],
+			[' ', 'GetLabelDetection', 'getlabeldetection'],
 			[' ', 'IndexFaces', 'IndexFaces'],
 			[' ', 'ListFaces', 'ListFaces']
 			],
@@ -403,7 +417,7 @@ new(function () {
 		},
 	};
 
-	ScratchExtensions.register('AWS AI Services', descriptor, ext);
+	ScratchExtensions.register('Youcode Intelligence Solutions (Preparing KIDS for AI future)', descriptor, ext);
 	})();
 
 
