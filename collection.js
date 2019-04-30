@@ -256,7 +256,7 @@ new(function () {
 			[' ', 'ListCollection', 'ListCollections'],
 			[' ', 'DeleteCollection', 'DeleteCollections'],
 			[' ', 'IndexFaces', 'IndexFaces'],
-			[' ', 'ListFaces', 'ListFaces']
+			[' ', 'ListFaces', 'ListFaces'],
 			[' ', 'SearchFaces', 'searchfacesbyimage']
 			],
 		menus: {
