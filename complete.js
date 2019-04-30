@@ -147,22 +147,7 @@ new(function () {
                  else     console.log(data);           // successful response
            });
 	};
-	ext.labelit = function () {
-		var labeling = {
-			Image: {
-                        S3Object: {
-                        Bucket: bucketsource, 
-                        Name: sourceimg
-                            }
-                        }, 
-                        MaxLabels: 123, 
-                        MinConfidence: 70
-                        };
-        rekognition.detectLabels(labeling, function(err, data) {
-                if (err) console.log(err, err.stack); // an error occurred
-                else     console.log(data);           // successful response
-	});
-	};
+	
 	ext.comparebucket = function () {
 		var comparams = {
 			SimilarityThreshold: 20,
@@ -201,6 +186,20 @@ new(function () {
 		speak(text, voice, callback);
 	};
 
+	ext.detectfaces = function () {
+		var params = {
+                       Image: {
+                       S3Object: {
+                       Bucket: bucketsource, 
+                       Name: sourceimg
+                              }
+                            }
+                        };
+        rekognition.detectFaces(params, function(err, data) {
+                if (err) console.log(err, err.stack); // an error occurred
+                else     console.log(data);           // successful response
+		 });
+	};
         ext.setvoice = function (Voice) {
 		voice = Voice;
 	};
@@ -250,7 +249,7 @@ new(function () {
 			[' ', 'choose target language %m.targetLanguages', 'setTargetLanguage', 'Chinese'],
 			[' ', 'Choose Voice %m.voices', 'setvoice', 'Lucia'],
 			[' ', 'Comparefaces', 'comparebucket'],
-			[' ', 'Labelimage', 'labelit'],
+			[' ', 'Detect Faces', 'detectfaces'],
 			[' ', 'DetectText', 'detectit'],
 			['w', 'translate %s', 'translate', 'Hello'],
 			['r', 'translatedText', 'getTranslatedText']
