@@ -141,28 +141,6 @@ new(function () {
 		initAWSServices(region);
 	};
 	
-	ext.comparebucket = function () {
-		var comparams = {
-			SimilarityThreshold: 20,
-			SourceImage: {
-				S3Object: {
-					Bucket: bucketsource,
-					Name: sourceimg
-				}
-			},
-			TargetImage: {
-				S3Object: {
-					Bucket: bucketsource,
-					Name: inputimg
-				}
-			}
-		};
-		rekognition.compareFaces(comparams, function (err, data) {
-			if (err) console.log(err, err.stack); // an error occurred
-			else console.log(data); // successful response
-		});
-	};
-
 	ext.makecollection = function () {
 		var name = prompt("Enter the name of collection");
 		var collect = {
@@ -220,10 +198,29 @@ new(function () {
          else     console.log(data);           // successful response
 	 });
 	};
-       ext.DeleteCollections =function () {
-		 var name = prompt("Enter the collection to delete");
-		 var params = {
-                 CollectionId: name
+	
+       ext.searchfacesbyimage = function () {
+	       var collectionid = prompt("Enter the collection id");
+	       var params = {
+                          CollectionId: collectionid, 
+                          FaceMatchThreshold: 50, 
+                          Image: {
+                          S3Object: {
+                          Bucket: bucketsource, 
+                          Name: sourceimg
+                             }
+                           }, 
+                          MaxFaces: 5
+                          };
+                rekognition.searchFacesByImage(params, function(err, data) {
+                         if (err) console.log(err, err.stack); // an error occurred
+                         else     console.log(data);           // successful response
+			 });
+       };
+                         ext.DeleteCollections = function () {
+		         var name = prompt("Enter the collection to delete");
+		         var params = {
+                         CollectionId: name
                  };
         rekognition.deleteCollection(params, function(err, data) {
           if (err) console.log(err, err.stack); // an error occurred
@@ -280,12 +277,12 @@ new(function () {
 
 			[' ', 'choose source language %m.sourceLanguages', 'setSourceLanguage', 'English'],
 			[' ', 'choose target language %m.targetLanguages', 'setTargetLanguage', 'Chinese'],
-			[' ', 'Comparefaces', 'comparebucket'],
 			[' ', 'CreateCollection', 'makecollection'],
 			[' ', 'ListCollection', 'ListCollections'],
 			[' ', 'DeleteCollection', 'DeleteCollections'],
 			[' ', 'IndexFaces', 'IndexFaces'],
 			[' ', 'ListFaces', 'ListFaces']
+			[' ', 'Search Faces By Image', 'searchfacesbyimage']
 			],
 		menus: {
 			languages: ['English', 'Spanish', 'Turkish', 'French', 'German', 'Italian', 'Chinese'],
