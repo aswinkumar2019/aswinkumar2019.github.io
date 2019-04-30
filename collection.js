@@ -103,21 +103,6 @@ new(function () {
 		});
 	};
 
-
-	function translateText(text, sourceLang, targetLang, translationHandler) {
-		var params = {
-			Text: text,
-			SourceLanguageCode: languages[sourceLang].translateCode,
-			TargetLanguageCode: languages[targetLang].translateCode,
-		};
-		translate.translateText(params, function (err, data) {
-			if (err)
-				console.log(err, err.stack);
-			else
-				translationHandler(data.TranslatedText);
-		});
-	}
-
 	function initExtension() {}
 
 	function initAWSServices(region) {
@@ -245,14 +230,6 @@ new(function () {
 	});
 	};
 	
-	ext.setSourceLanguage = function (lang) {
-		sourceLanguage = lang;
-	};
-
-	ext.setTargetLanguage = function (lang) {
-		targetLanguage = lang;
-	};
-
 	ext._shutdown = function () {};
 
 	ext._getStatus = function () {
