@@ -212,8 +212,8 @@ new(function () {
 			['-'],
 			['-'],
 			[' ', 'IndexFaces', 'IndexFaces'],
+		        [' ', 'SearchFaces', 'searchfacesbyimage']
 			[' ', 'ListFaces', 'ListFaces']
-			[' ', 'SearchFaces', 'searchfacesbyimage']
 			],
 		menus: {
 			languages: ['English', 'Spanish', 'Turkish', 'French', 'German', 'Italian', 'Chinese'],
