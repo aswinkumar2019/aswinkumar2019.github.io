@@ -252,8 +252,6 @@ new(function () {
 			['-'],
 			['-'],
 
-			[' ', 'choose source language %m.sourceLanguages', 'setSourceLanguage', 'English'],
-			[' ', 'choose target language %m.targetLanguages', 'setTargetLanguage', 'Chinese'],
 			[' ', 'CreateCollection', 'makecollection'],
 			[' ', 'ListCollection', 'ListCollections'],
 			[' ', 'DeleteCollection', 'DeleteCollections'],
