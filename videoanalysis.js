@@ -304,6 +304,30 @@ new(function () {
                      });
 	};
 	
+	ext.startlabeldetection = function () {
+		var rolearn = prompt("Enter the IAM arn which gives access to SNS");
+		var snsarn = prompt("Enter the arn value of sns");
+		var jobtag = prompt("Enter a unique job tag value,not compulsory");
+		var minconfidence = prompt("Enter the minimum confidence level,it is not compulsory");
+		var params = {
+                       Video: { /* required */
+                       S3Object: {
+                       Bucket: bucketsource,
+                       Name: sourceimg,
+                           }
+                       },
+                JobTag: jobtag,
+                MinConfidence: minconfidence,
+                NotificationChannel: {
+                RoleArn: rolearn, /* required */
+                SNSTopicArn: snsarn /* required */
+                    }
+                };
+        rekognition.startLabelDetection(params, function(err, data) {
+              if (err) console.log(err, err.stack); // an error occurred
+              else     console.log(data);           // successful response
+               });
+	};
 	ext.GetFaceDetection = function () {
 		var jobid = prompt("Enter the job ID")
 		var params = {
@@ -368,6 +392,7 @@ new(function () {
 			[' ', 'GetFaceDetection', 'GetFaceDetection'],
 			[' ', 'VideoPersonTracking', 'videopersontrack'],
 			[' ', 'GetPersonTracking', 'getpersontrack'],
+			[' ', 'StartLabelDetection', 'startlabeldetection'],
 			[' ', 'IndexFaces', 'IndexFaces'],
 			[' ', 'ListFaces', 'ListFaces']
 			],
