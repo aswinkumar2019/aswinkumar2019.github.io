@@ -126,16 +126,7 @@ new(function () {
 		initAWSServices(region);
 	};
 	
-	ext.makecollection = function () {
-		var name = prompt("Enter the name of collection");
-		var collect = {
-                CollectionId: name /* required */
-       };
-        rekognition.createCollection(collect, function(err, data) {
-            if (err) console.log(err, err.stack); // an error occurred
-            else     console.log(data);           // successful response
-            });
-	};
+
 	// Polly services
 	ext.setLanguage = function (lang) {
 		language = lang;
@@ -146,22 +137,6 @@ new(function () {
 		speak(text, voice, callback);
 	};
 
-        ext.ListCollections = function () {
-		var listit = {
-		};
-        rekognition.listCollections(listit, function(err, data) {
-        if (err) console.log(err, err.stack); // an error occurred
-        else     console.log(data);           // successful response
-        /*
-       data = {
-       CollectionIds: [
-       "myphotos"
-       ]
-       }
-      */
-       });
-	};
-	// Translate services
 	
 	ext.IndexFaces = function () {
 		var name = prompt("Enter the name of collection");
@@ -202,21 +177,6 @@ new(function () {
                          else     console.log(data);           // successful response
 			 });
        };
-                         ext.DeleteCollections = function () {
-		         var name = prompt("Enter the collection to delete");
-		         var params = {
-                         CollectionId: name
-                 };
-        rekognition.deleteCollection(params, function(err, data) {
-          if (err) console.log(err, err.stack); // an error occurred
-          else     console.log(data);           // successful response
-          /*
-          data = {
-          StatusCode: 200
-          }
-          */
-        });
-	};
 	
 	ext.ListFaces = function () {
 		var name = prompt("Enter the name of the collection");
@@ -251,10 +211,6 @@ new(function () {
 
 			['-'],
 			['-'],
-
-			[' ', 'CreateCollection', 'makecollection'],
-			[' ', 'ListCollection', 'ListCollections'],
-			[' ', 'DeleteCollection', 'DeleteCollections'],
 			[' ', 'IndexFaces', 'IndexFaces'],
 			[' ', 'ListFaces', 'ListFaces']
 			[' ', 'SearchFaces', 'searchfacesbyimage']
