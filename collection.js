@@ -268,7 +268,7 @@ new(function () {
 		},
 	};
 
-	ScratchExtensions.register('Youcode Intelligence Solutions (Preparing KIDS for AI future)'), descriptor, ext);
+	ScratchExtensions.register('Youcode Intelligence Solutions (Preparing KIDS for AI future)', descriptor, ext);
 	})();
 
 
