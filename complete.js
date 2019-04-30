@@ -234,13 +234,13 @@ new(function () {
 
 	var descriptor = {
 		blocks: [
-			[' ', 'init AWS %s', 'initAWSServices', 'us-east-1'],
+			[' ', 'initialise %s', 'initAWSServices', 'us-east-1'],
 
 			['-'],
 			['-'],
 
 			[' ', 'choose language %m.languages', 'setLanguage', 'English'],
-			['w', 'say %s', 'speak', 'Hello from Amazon Web Services'],
+			['w', 'say %s', 'speak', 'Hello KIDS'],
 
 			['-'],
 			['-'],
