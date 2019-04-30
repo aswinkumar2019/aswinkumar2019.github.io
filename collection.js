@@ -282,7 +282,7 @@ new(function () {
 			[' ', 'DeleteCollection', 'DeleteCollections'],
 			[' ', 'IndexFaces', 'IndexFaces'],
 			[' ', 'ListFaces', 'ListFaces']
-			[' ', 'Search Faces By Image', 'searchfacesbyimage']
+			[' ', 'SearchFaces', 'searchfacesbyimage']
 			],
 		menus: {
 			languages: ['English', 'Spanish', 'Turkish', 'French', 'German', 'Italian', 'Chinese'],
@@ -291,7 +291,7 @@ new(function () {
 		},
 	};
 
-	ScratchExtensions.register('AWS AI Services', descriptor, ext);
+	ScratchExtensions.register('Youcode Intelligence Solutions (Preparing KIDS for AI future)'), descriptor, ext);
 	})();
 
 
