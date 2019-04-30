@@ -260,7 +260,7 @@ new(function () {
 			[' ', 'Comparefaces', 'comparebucket'],
 			[' ', 'Labelimage', 'labelit'],
 			[' ', 'DetectText', 'detectit'],
-			[' ',, 'Detect Faces', 'detectfaces'],
+			[' ', 'Detect Faces', 'detectfaces'],
 			['w', 'translate %s', 'translate', 'Hello'],
 			['r', 'translatedText', 'getTranslatedText']
 
