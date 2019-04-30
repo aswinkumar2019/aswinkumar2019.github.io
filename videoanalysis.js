@@ -353,6 +353,47 @@ new(function () {
                 });
 	       };
 	
+	ext.startfacesearch = function () {
+		var collect = prompt("Enter the collection ID");
+		var rolearn = prompt("Enter the IAM arn which gives access to sns");
+		var snsarn = prompt("Enter the arn value of SNS");
+		var reqtoken = prompt("Enter a unique request token value");
+		var matchthreshold = prompt("Enter the face match threshold value");
+		var jobtag = prompt("Enter a unique job tag value");
+		var params = {
+                          CollectionId: 'STRING_VALUE', /* required */
+                          Video: { /* required */
+                          S3Object: {
+                          Bucket: bucketsource,
+                          Name: sourceimg,
+                              }
+                          },
+                          ClientRequestToken: reqtoken,
+                          FaceMatchThreshold: matchthreshold,
+                          JobTag: jobtag,
+                          NotificationChannel: {
+                          RoleArn: rolearn, /* required */
+                          SNSTopicArn: snsarn /* required */
+                               }
+                          };
+                          rekognition.startFaceSearch(params, function(err, data) {
+                          if (err) console.log(err, err.stack); // an error occurred
+                          else     console.log(data);           // successful response
+                              });
+	};
+	ext.getfacesearch = function () {
+		var jobid = prompt("Enter the jobid to get result");
+		var sort = prompt("Enter the type of sort for result,values maybe INDEX or TIMESTAMP");
+		var params = {
+                JobId: jobid, /* required */
+                SortBy: sort
+                 };
+                rekognition.getFaceSearch(params, function(err, data) {
+                if (err) console.log(err, err.stack); // an error occurred
+                else     console.log(data);           // successful response
+                });
+	};
+	
 	ext.ListFaces = function () {
 		var name = prompt("Enter the name of the collection");
 	        var params = {
@@ -407,6 +448,8 @@ new(function () {
 			[' ', 'GetPersonTracking', 'getpersontrack'],
 			[' ', 'StartLabelDetection', 'startlabeldetection'],
 			[' ', 'GetLabelDetection', 'getlabeldetection'],
+			[' ', 'StartFaceSearch', 'startfacesearch'],
+			[' ', 'GetFaceSearch', 'getfacesearch'],
 			[' ', 'IndexFaces', 'IndexFaces'],
 			[' ', 'ListFaces', 'ListFaces']
 			],
