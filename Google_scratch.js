@@ -18,7 +18,8 @@ function initGoogleServices() {
 		setSpeechStatus('Loading...');
 		gapi.load('client:auth2', function () {
 			gapi.client.init({
-				'apiKey': GOOGLE_API_KEY,
+				var key = prompt("Enter the google api key");
+				'apiKey': key,
 				// Your API key will be automatically added to the Discovery Document URLs.
 				'discoveryDocs': [
 					"https://speech.googleapis.com/$discovery/rest?version=v1",
