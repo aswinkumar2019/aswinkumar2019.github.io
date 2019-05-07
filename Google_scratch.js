@@ -1,4 +1,6 @@
 /* FIRST COMMIT */
+var sourceLang;
+var targetLang;
 
 var languages = {
 		'Japanese': {
@@ -82,9 +84,6 @@ function initGoogleServices() {
 		});
 	}
 
-function translateText(text, sourceLang, targetLang, translationHandler) {
-			translateTextGoogle(text, sourceLang, targetLang, translationHandler);
-	}
 
 function recognizeSpeech(audioData, recognizeInputLanguage, recognitionHandler) {
 		console.log("recognizing speech ...");
@@ -110,6 +109,26 @@ function recognizeSpeech(audioData, recognizeInputLanguage, recognitionHandler) 
 		});
 	}
 
+
+        function translateText(text, sourceLang, targetLang, translationHandler) {
+			translateTextGoogle(text, sourceLang, targetLang, translationHandler);
+	}
+     // Translate services
+
+        ext.translate = function (text) {
+		
+	ext.setSourceLanguage = function (lang) {
+		sourceLanguage = lang;
+		sourceLang = languages[sourceLanguage.translateCode];
+		
+		
+	};
+
+	ext.setTargetLanguage = function (lang) {
+		targetLanguage = lang;
+		targetLang = languages[targetLanguage.translateCode];
+	};
+
         var descriptor = {
 		blocks: [
 			[' ', 'initialise %s', 'initgoogle'],
@@ -124,8 +143,7 @@ function recognizeSpeech(audioData, recognizeInputLanguage, recognitionHandler) 
 			['-'],
 
 			[' ', 'choose source language %m.sourceLanguages', 'setSourceLanguage', 'English'],
-			[' ', 'choose target language %m.targetLanguages', 'setTargetLanguage', 'Chinese'],
-			[' ', 'Choose Voice %m.voices', 'setvoice', 'Lucia'],
+			[' ', 'choose target language %m.targetLanguages', 'setTargetLanguage', 'Tamil'],
 			['w', 'translate %s', 'translate', 'Hello'],
 			['r', 'translatedText', 'getTranslatedText']
 
