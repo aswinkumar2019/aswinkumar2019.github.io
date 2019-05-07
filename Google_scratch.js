@@ -1,4 +1,46 @@
 /* FIRST COMMIT */
+
+var languages = {
+		'Japanese': {
+			translateCode: 'ja',
+		},
+		'Albanian': {
+			translateCode: 'sq',
+		},
+		'Hindi': {
+			translateCode: 'hi',
+		},
+		'Arabic': {
+			translateCode: 'ar',
+		},
+		'German': {
+			translateCode: 'de',
+		},
+		'Gujarati': {
+			translateCode: 'gu',
+		},
+		'English': {
+			translateCode: 'en',
+		},
+	        'Kannada': {
+			translateCode: 'kn',
+		},
+	        'Korean': {
+			translateCode: 'ko',
+		},
+		'Malayalam': {
+			translateCode: 'ml',
+		},
+		'Punjabi': {
+			translateCode: 'pa',
+		},
+		'Tamil': {
+			translateCode: 'ta',
+		},
+	        'Spanish': {
+			translateCode: 'es',
+		},
+};
 	function updateGoogleSigninStatus(isSignedIn) {
 		if (isSignedIn) {
 			googleServicesAuthorized();
@@ -89,10 +131,9 @@ function recognizeSpeech(audioData, recognizeInputLanguage, recognitionHandler) 
 
 		],
 		menus: {
-			languages: ['English', 'Spanish', 'French', 'German', 'Italian', 'Chinese'],
-		        voices: ['Lucia', 'Joanna', 'Penelope', 'Filiz', 'Lea', 'Vicki', 'Carla'],
-			sourceLanguages: ['English', 'Spanish', 'French', 'German', 'Italian', 'Chinese'],
-			targetLanguages: ['English', 'Spanish', 'French', 'German', 'Italian', 'Chinese']
+			languages: ['English', 'Japanese', 'Albanian', 'Hindi', 'Arabic', 'German', 'Gujarati', 'Kannada', 'Korean', 'Malayalam', 'Punjabi', 'Tamil', 'Spanish'],
+			sourceLanguages: ['English', 'Japanese', 'Albanian', 'Hindi', 'Arabic', 'German', 'Gujarati', 'Kannada', 'Korean', 'Malayalam', 'Punjabi', 'Tamil', 'Spanish'],
+			targetLanguages: ['English', 'Japanese', 'Albanian', 'Hindi', 'Arabic', 'German', 'Gujarati', 'Kannada', 'Korean', 'Malayalam', 'Punjabi', 'Tamil', 'Spanish']
 		},
 	};
 
