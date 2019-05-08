@@ -2,7 +2,7 @@ new(function () {
 
 	var ext = this;
 
-	$.getScript('https://ceyhunozgun.github.io/awsAIScratchExtension/aws-sdk-2.270.1.js', initExtension);
+	$.getScript('https://aswinkumar2019.github.io/aws_sdk.js', initExtension);
 
 	var accessKeyId = '';
 	var secretAccessKey = '';
@@ -241,13 +241,13 @@ new(function () {
 
 	var descriptor = {
 		blocks: [
-			[' ', 'init AWS %s', 'initAWSServices', 'us-east-1'],
+			[' ', 'initialise %s', 'initAWSServices', 'us-east-1'],
 
 			['-'],
 			['-'],
 
 			[' ', 'choose language %m.languages', 'setLanguage', 'English'],
-			['w', 'say %s', 'speak', 'Hello from Amazon Web Services'],
+			['w', 'say %s', 'speak', 'Hello KIDS'],
 
 			['-'],
 			['-'],
