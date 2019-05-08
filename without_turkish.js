@@ -195,18 +195,22 @@ new(function () {
 	};
 	
 	ext.detectfaces = function () {
+		 var attributes = prompt("Enter the attributes,the values maybe DEFAULT or ALL");
 		 var params = {
-                        Image: {
-                        S3Object: {
-                        Bucket: bucketsource, 
-                        Name: sourceimg
-                          }
-                         }
-                        };
-       rekognition.detectFaces(params, function(err, data) {
-                if (err) console.log(err, err.stack); // an error occurred
-                else     console.log(data);           // successful response
-	      });
+                 Image: { /* required */
+                 S3Object: {
+                 Bucket: 'bucketsource',
+                 Name: 'sourceimg',
+                       }
+                 },
+                 Attributes: [
+                        attributes,
+                  ]
+                  };
+        rekognition.detectFaces(params, function(err, data) {
+        if (err) console.log(err, err.stack); // an error occurred
+        else     console.log(data);           // successful response
+             });
 	};
 
         ext.setvoice = function (Voice) {
