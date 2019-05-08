@@ -199,8 +199,8 @@ new(function () {
 		 var params = {
                  Image: { /* required */
                  S3Object: {
-                 Bucket: 'bucketsource',
-                 Name: 'sourceimg',
+                 Bucket: bucketsource,
+                 Name: sourceimg,
                        }
                  },
                  Attributes: [
