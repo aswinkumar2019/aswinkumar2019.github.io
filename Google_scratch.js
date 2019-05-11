@@ -119,14 +119,14 @@ function recognizeSpeech(audioData, recognizeInputLanguage, recognitionHandler) 
 		
 	ext.setSourceLanguage = function (lang) {
 		sourceLanguage = lang;
-		sourceLang = languages[sourceLanguage.translateCode];
+		sourceLang = languages[sourceLanguage].translateCode;
 		
 		
 	};
 
 	ext.setTargetLanguage = function (lang) {
 		targetLanguage = lang;
-		targetLang = languages[targetLanguage.translateCode];
+		targetLang = languages[targetLanguage].translateCode;
 	};
 
         var descriptor = {
