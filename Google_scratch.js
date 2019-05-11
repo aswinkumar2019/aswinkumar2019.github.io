@@ -1,8 +1,9 @@
 /* FIRST COMMIT */
-var sourceLang;
-var targetLang;
-
-var languages = {
+new(function () {
+	
+              var sourceLang;
+              var targetLang;
+              var languages = {
 		'Japanese': {
 			translateCode: 'ja',
 		},
