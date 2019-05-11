@@ -110,12 +110,10 @@ function recognizeSpeech(audioData, recognizeInputLanguage, recognitionHandler) 
 	}
 
 
-        function translateText(text, sourceLang, targetLang, translationHandler) {
-			translateTextGoogle(text, sourceLang, targetLang, translationHandler);
-	}
-     // Translate services
 
-        ext.translate = function (text) {
+        ext.translate = function (text, translationHandler) {
+		translateTextGoogle(text, sourceLang, targetLang, translationHandler);
+	};
 		
 	ext.setSourceLanguage = function (lang) {
 		sourceLanguage = lang;
