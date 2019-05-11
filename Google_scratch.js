@@ -59,10 +59,11 @@ function googleServicesAuthorized() {
 	}
 
 function initGoogleServices() {
+	        var key = prompt("Enter the google api key");
 		setSpeechStatus('Loading...');
 		gapi.load('client:auth2', function () {
 			gapi.client.init({
-				var key = prompt("Enter the google api key");
+				
 				'apiKey': key,
 				// Your API key will be automatically added to the Discovery Document URLs.
 				'discoveryDocs': [
