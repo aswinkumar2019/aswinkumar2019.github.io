@@ -59,32 +59,7 @@ function googleServicesAuthorized() {
 		});
 	}
 
-function initGoogleServices() {
-	        var key = prompt("Enter the google api key");
-		setSpeechStatus('Loading...');
-		gapi.load('client:auth2', function () {
-			gapi.client.init({
-				
-				'apiKey': key,
-				// Your API key will be automatically added to the Discovery Document URLs.
-				'discoveryDocs': [
-					"https://speech.googleapis.com/$discovery/rest?version=v1",
-		    		"https://translation.googleapis.com/$discovery/rest?version=v2"
-		    	],
-				// clientId and scope are optional if auth is not required.
-				'clientId': GOOGLE_CLIENT_ID,
-				'scope': 'https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloud-translation',
-			}).then(function() {
-				gapi.auth2.getAuthInstance().isSignedIn.listen(updateGoogleSigninStatus);
-				var authorized = gapi.auth2.getAuthInstance().isSignedIn.get();
-				
-				if (authorized)
-					googleServicesAuthorized();
-				else
-					gapi.auth2.getAuthInstance().signIn();
-			});
-		});
-	}
+
 
 
 function recognizeSpeech(audioData, recognizeInputLanguage, recognitionHandler) {
@@ -112,6 +87,32 @@ function recognizeSpeech(audioData, recognizeInputLanguage, recognitionHandler) 
 	}
 
 
+	ext.initGoogleServices() {
+	        var key = prompt("Enter the google api key");
+		setSpeechStatus('Loading...');
+		gapi.load('client:auth2', function () {
+			gapi.client.init({
+				
+				'apiKey': key,
+				// Your API key will be automatically added to the Discovery Document URLs.
+				'discoveryDocs': [
+					"https://speech.googleapis.com/$discovery/rest?version=v1",
+		    		"https://translation.googleapis.com/$discovery/rest?version=v2"
+		    	],
+				// clientId and scope are optional if auth is not required.
+				'clientId': GOOGLE_CLIENT_ID,
+				'scope': 'https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloud-translation',
+			}).then(function() {
+				gapi.auth2.getAuthInstance().isSignedIn.listen(updateGoogleSigninStatus);
+				var authorized = gapi.auth2.getAuthInstance().isSignedIn.get();
+				
+				if (authorized)
+					googleServicesAuthorized();
+				else
+					gapi.auth2.getAuthInstance().signIn();
+			});
+		});
+	}
 
         ext.translate = function (text, translationHandler) {
 		translateTextGoogle(text, sourceLang, targetLang, translationHandler);
@@ -131,7 +132,7 @@ function recognizeSpeech(audioData, recognizeInputLanguage, recognitionHandler) 
 
         var descriptor = {
 		blocks: [
-			[' ', 'initialise %s', 'initgoogle'],
+			[' ', 'initialise %s', 'initGoogleServices'],
 
 			['-'],
 			['-'],
