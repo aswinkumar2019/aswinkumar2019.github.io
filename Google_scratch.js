@@ -1,7 +1,7 @@
 /* FIRST COMMIT */
 new(function () {
-	
-              var sourceLang;
+	      var ext = this;
+	      var sourceLang;
               var targetLang;
               var languages = {
 		'Japanese': {
