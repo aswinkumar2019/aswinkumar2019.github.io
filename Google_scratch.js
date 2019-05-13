@@ -1,4 +1,3 @@
-/* FIRST COMMIT */
 new(function () {
 	      var ext = this;
 	      var sourceLang;
