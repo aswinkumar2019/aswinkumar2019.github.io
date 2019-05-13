@@ -60,7 +60,22 @@ function googleServicesAuthorized() {
 	}
 
 
+function translateTextGoogle(text,translationHandler) {
+		gapi.client.language.translations.translate({ 
+			'q': text,
+			'source': sourceLang,
+			'target': targetLang,
+			'format': 'text'
+		}).execute(function(r) {
+			console.log(r);
+			if (r.data.translations.length > 0) {
+				var translatedText = r.data.translations[0].translatedText;
+				translationHandler(translatedText);
+			}
+		});
+	}
 
+	
 
 function recognizeSpeech(audioData, recognizeInputLanguage, recognitionHandler) {
 		console.log("recognizing speech ...");
@@ -115,9 +130,15 @@ function recognizeSpeech(audioData, recognizeInputLanguage, recognitionHandler) 
 	};
 
         ext.translate = function (text, translationHandler) {
-		translateTextGoogle(text, sourceLang, targetLang, translationHandler);
+		translateTextGoogle(text, translationHandler);
 	};
 		
+	
+        ext.getTranslatedText = function () {
+		return translatedText;
+	};
+
+	
 	ext.setSourceLanguage = function (lang) {
 		sourceLanguage = lang;
 		sourceLang = languages[sourceLanguage].translateCode;
