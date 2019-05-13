@@ -87,7 +87,7 @@ function recognizeSpeech(audioData, recognizeInputLanguage, recognitionHandler) 
 	}
 
 
-	ext.initGoogleServices() {
+	ext.initGoogleServices = function () {
 	        var key = prompt("Enter the google api key");
 		setSpeechStatus('Loading...');
 		gapi.load('client:auth2', function () {
@@ -112,7 +112,7 @@ function recognizeSpeech(audioData, recognizeInputLanguage, recognitionHandler) 
 					gapi.auth2.getAuthInstance().signIn();
 			});
 		});
-	}
+	};
 
         ext.translate = function (text, translationHandler) {
 		translateTextGoogle(text, sourceLang, targetLang, translationHandler);
@@ -132,7 +132,7 @@ function recognizeSpeech(audioData, recognizeInputLanguage, recognitionHandler) 
 
         var descriptor = {
 		blocks: [
-			[' ', 'initialise %s', 'initGoogleServices'],
+			[' ', 'initialise', 'initGoogleServices'],
 
 			['-'],
 			['-'],
