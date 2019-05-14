@@ -73,22 +73,7 @@ new(function () {
 				'discoveryDocs': [
 					"https://speech.googleapis.com/$discovery/rest?version=v1",
 		    		"https://translation.googleapis.com/$discovery/rest?version=v2"
-		    	]}).then(function() {
-				prompt("Entered then function");
-				gapi.auth2.getAuthInstance().isSignedIn.listen(updateGoogleSigninStatus);
-				var authorized = gapi.auth2.getAuthInstance().isSignedIn.get();
-				
-				if (authorized)
-				{
-					googleServicesAuthorized();
-				console.log("Authorised");
-				}
-				else
-				{
-					prompt("Not authorised");
-					gapi.auth2.getAuthInstance().signIn();
-				};
-			});
+		    	]})
 		});
 	};
 
