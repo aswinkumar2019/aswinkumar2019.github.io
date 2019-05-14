@@ -65,6 +65,7 @@ new(function () {
 	ext.initGoogleServices = function () {
 	        var key = prompt("Enter the google api key");
 		setSpeechStatus('Loading...');
+		prompt("Set speech status");
 		gapi.load('client:auth2', function () {
 			gapi.client.init({
 				
@@ -78,14 +79,21 @@ new(function () {
 				var authorized = gapi.auth2.getAuthInstance().isSignedIn.get();
 				
 				if (authorized)
+				{
 					googleServicesAuthorized();
+				console.log("Authorised");
+				};
 				else
+				{
+					prompt("Not authorised");
 					gapi.auth2.getAuthInstance().signIn();
+				};
 			});
 		});
 	};
 
         ext.translate = function (text) {
+		prompt("Translation block entered");
 		gapi.client.language.translations.translate({ 
 			'q': text,
 			'source': sourceLang,
@@ -98,11 +106,13 @@ new(function () {
 		
 	
         ext.getTranslatedText = function () {
+		prompt("Return translated text block");
 		return translatedText;
 	};
 
 	
 	ext.setSourceLanguage = function (lang) {
+		prompt("Set source language block");
 		sourceLanguage = lang;
 		sourceLang = languages[sourceLanguage].translateCode;
 		
