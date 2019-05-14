@@ -59,11 +59,6 @@ new(function () {
 		});
 	}
 
-
-    function translateTextGoogle(text) {
-		
-	}
-
 	function initExtension() {}
 
 
