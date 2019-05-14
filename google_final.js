@@ -84,7 +84,10 @@ new(function () {
                                               "medium-bluetooth-speaker-class-device"
                                              ]
                                   }
-		});
+		}).then(function(r) {
+			prompt("Inside result block");
+			console.log(r);
+                  });
 	};
 			
 	ext.initGoogleServices = function () {
