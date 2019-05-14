@@ -75,13 +75,13 @@ new(function () {
                                 "ssmlGender": voicetype
                                   },
                          "audioConfig": {
-                                "audioEncoding": MP3,
+                                "audioEncoding": "MP3",
                                 "speakingRate": 1.0,
                                 "pitch": 0.0,
                                 "volumeGainDb": 0.0,
                                // "sampleRateHertz": number,
                                 "effectsProfileId": [
-                                              medium-bluetooth-speaker-class-device
+                                              "medium-bluetooth-speaker-class-device"
                                              ]
                                   }
 		});
