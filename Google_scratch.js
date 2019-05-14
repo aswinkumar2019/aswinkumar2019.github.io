@@ -68,6 +68,7 @@ new(function () {
 		prompt("Set speech status");
 		gapi.load('client:auth2', function () {
 			gapi.client.init({
+				prompt("Going to initialize api key");
 				
 				'apiKey': key,
 				// Your API key will be automatically added to the Discovery Document URLs.
@@ -75,6 +76,7 @@ new(function () {
 					"https://speech.googleapis.com/$discovery/rest?version=v1",
 		    		"https://translation.googleapis.com/$discovery/rest?version=v2"
 		    	]}).then(function() {
+				prompt("Entered then function");
 				gapi.auth2.getAuthInstance().isSignedIn.listen(updateGoogleSigninStatus);
 				var authorized = gapi.auth2.getAuthInstance().isSignedIn.get();
 				
