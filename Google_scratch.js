@@ -99,7 +99,7 @@ new(function () {
 			'source': sourceLang,
 			'target': targetLang,
 			'format': 'text'
-		}).execute(function(r) {
+		}).then(function(r) {
 			console.log(r);
 		});
 	};
