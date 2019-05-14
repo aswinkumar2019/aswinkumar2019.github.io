@@ -64,7 +64,6 @@ new(function () {
 
 	ext.initGoogleServices = function () {
 	        var key = prompt("Enter the google api key");
-		setSpeechStatus('Loading...');
 		prompt("Set speech status");
 		gapi.load('client:auth2', function () {
 			gapi.client.init({
