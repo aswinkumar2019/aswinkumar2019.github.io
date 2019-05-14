@@ -95,7 +95,7 @@ new(function () {
 			'q': text,
 			'source': sourceLang,
 			'target': targetLang,
-			'format': 'text'+
+			'format': 'text'
 		}).execute(function(r) {
 			console.log(r);
 		});
