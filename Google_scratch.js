@@ -67,7 +67,6 @@ new(function () {
 		prompt("Set speech status");
 		gapi.load('client:auth2', function () {
 			gapi.client.init({
-				prompt("Going to initialize api key");
 				
 				'apiKey': key,
 				// Your API key will be automatically added to the Discovery Document URLs.
