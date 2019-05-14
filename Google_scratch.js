@@ -82,7 +82,7 @@ new(function () {
 				{
 					googleServicesAuthorized();
 				console.log("Authorised");
-				};
+				}
 				else
 				{
 					prompt("Not authorised");
