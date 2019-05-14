@@ -1,5 +1,6 @@
 new(function () {
 	      var ext = this;
+	      $.getScript('https://apis.google.com/js/api.js', initExtension);
 	      var sourceLang;
               var targetLang;
               var languages = {
@@ -50,7 +51,7 @@ new(function () {
 	}
 
 
-function googleServicesAuthorized() {
+         function googleServicesAuthorized() {
 		gapi.client.load('speech', 'v1', function() {
 			gapi.client.load('translate', 'v2', function () {
 				setSpeechStatus('Loaded.');
@@ -59,46 +60,11 @@ function googleServicesAuthorized() {
 	}
 
 
-function translateTextGoogle(text,translationHandler) {
-		gapi.client.language.translations.translate({ 
-			'q': text,
-			'source': sourceLang,
-			'target': targetLang,
-			'format': 'text'
-		}).execute(function(r) {
-			console.log(r);
-			if (r.data.translations.length > 0) {
-				var translatedText = r.data.translations[0].translatedText;
-				translationHandler(translatedText);
-			}
-		});
+    function translateTextGoogle(text) {
+		
 	}
 
-	
-
-function recognizeSpeech(audioData, recognizeInputLanguage, recognitionHandler) {
-		console.log("recognizing speech ...");
-		recognizeSpeechGoogle(arrayBufferToBase64(audioData), recognizeInputLanguage, recognitionHandler);
-	}
-	
-	function recognizeSpeechGoogle(base64Audio, inputLang, recognitionHandler) {
-		gapi.client.speech.speech.recognize({
-			config: {
-				'languageCode': inputLang,
-				'maxAlternatives': 5 
-			},
-			audio: {
-				'content': base64Audio
-			}
-		}).execute(function (r) {
-			setSpeechStatus('');
-			var text = null;
-			if (r.result && r.result.results)
-				text = extractBestSpeechResult(r.result.results);
-			if (text)
-				recognitionHandler(text);
-		});
-	}
+	function initExtension() {}
 
 
 	ext.initGoogleServices = function () {
@@ -112,11 +78,7 @@ function recognizeSpeech(audioData, recognizeInputLanguage, recognitionHandler) 
 				'discoveryDocs': [
 					"https://speech.googleapis.com/$discovery/rest?version=v1",
 		    		"https://translation.googleapis.com/$discovery/rest?version=v2"
-		    	],
-				// clientId and scope are optional if auth is not required.
-				'clientId': GOOGLE_CLIENT_ID,
-				'scope': 'https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloud-translation',
-			}).then(function() {
+		    	]}).then(function() {
 				gapi.auth2.getAuthInstance().isSignedIn.listen(updateGoogleSigninStatus);
 				var authorized = gapi.auth2.getAuthInstance().isSignedIn.get();
 				
@@ -128,8 +90,15 @@ function recognizeSpeech(audioData, recognizeInputLanguage, recognitionHandler) 
 		});
 	};
 
-        ext.translate = function (text, translationHandler) {
-		translateTextGoogle(text, translationHandler);
+        ext.translate = function (text) {
+		gapi.client.language.translations.translate({ 
+			'q': text,
+			'source': sourceLang,
+			'target': targetLang,
+			'format': 'text'+
+		}).execute(function(r) {
+			console.log(r);
+		});
 	};
 		
 	
@@ -156,8 +125,6 @@ function recognizeSpeech(audioData, recognizeInputLanguage, recognitionHandler) 
 
 			['-'],
 			['-'],
-
-			[' ', 'choose language %m.languages', 'setLanguage', 'English'],
 			['w', 'say %s', 'speak', 'Hello Kids'],
 
 			['-'],
