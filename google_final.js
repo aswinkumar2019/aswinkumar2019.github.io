@@ -3,6 +3,7 @@ new(function () {
 	      $.getScript('https://apis.google.com/js/api.js', initExtension);
 	      var sourceLang;
               var targetLang;
+	      var langspeak;
               var languages = {
 		'Japanese': {
 			translateCode: 'ja',
@@ -62,6 +63,30 @@ new(function () {
 	function initExtension() {}
 
 
+	ext.speak = function (texttospeak) {
+		var voicetype = prompt("Enter voice type,Values may be MALE,FEMALE,SSML_VOICE_GENDER_UNSPECIFIED,NEUTRAL");
+		gapi.client.texttospeech.text.synthesize({
+			 "input": {
+                                 "text": texttospeak,
+                                   },
+                         "voice": {
+                                "languageCode": langspeak,
+                               // "name": string,
+                                "ssmlGender": voicetype
+                                  },
+                         "audioConfig": {
+                                "audioEncoding": MP3,
+                                "speakingRate": 1.0,
+                                "pitch": 0.0,
+                                "volumeGainDb": 0.0,
+                               // "sampleRateHertz": number,
+                                "effectsProfileId": [
+                                              medium-bluetooth-speaker-class-device
+                                             ]
+                                  }
+		});
+	};
+			
 	ext.initGoogleServices = function () {
 	        var key = prompt("Enter the google api key");
 		prompt("Set speech status");
@@ -71,8 +96,8 @@ new(function () {
 				'apiKey': key,
 				// Your API key will be automatically added to the Discovery Document URLs.
 				'discoveryDocs': [
-					"https://speech.googleapis.com/$discovery/rest?version=v1",
-		    		"https://translation.googleapis.com/$discovery/rest?version=v2"
+					"https://texttospeech.googleapis.com/$discovery/rest?version=v1",
+		    		        "https://translation.googleapis.com/$discovery/rest?version=v2"
 		    	]})
 		});
 	};
@@ -96,16 +121,21 @@ new(function () {
 	};
 
 	
+        ext.setlanguage = function(lang) {
+		var speaklang = lang;
+		langspeak = languages[speaklang].translateCode;
+	};
+			
 	ext.setSourceLanguage = function (lang) {
 		prompt("Set source language block");
-		sourceLanguage = lang;
+		var sourceLanguage = lang;
 		sourceLang = languages[sourceLanguage].translateCode;
 		
 		
 	};
 
 	ext.setTargetLanguage = function (lang) {
-		targetLanguage = lang;
+		var targetLanguage = lang;
 		targetLang = languages[targetLanguage].translateCode;
 	};
 
@@ -115,11 +145,14 @@ new(function () {
 
 			['-'],
 			['-'],
-			['w', 'say %s', 'speak', 'Hello Kids'],
+			['w', 'initialise speak %s', 'speak', 'Hello Kids'],
 
+			[' ', 'Get speak result %s', 'speakresult'],
+			
 			['-'],
 			['-'],
 
+		        [' ', 'choose language %m.languages', 'setlanguage', 'English'],
 			[' ', 'choose source language %m.sourceLanguages', 'setSourceLanguage', 'English'],
 			[' ', 'choose target language %m.targetLanguages', 'setTargetLanguage', 'Tamil'],
 			['w', 'translate %s', 'translate', 'Hello'],
