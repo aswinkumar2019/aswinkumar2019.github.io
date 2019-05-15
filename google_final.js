@@ -128,7 +128,6 @@ new(function () {
 	ext.imganalyse = function () {
 		var uri = prompt("Enter the google cloud url where image is stored");
 		gapi.client.vision.images.annotate({
-                                            {
                                        "requests": [
                                                  {
                                              "imageContext": {
