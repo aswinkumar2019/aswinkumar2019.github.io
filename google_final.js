@@ -137,7 +137,7 @@ new(function () {
                                                            },
                                                  "image": {
                                                          "source": {
-                                                               "gcsImageUri": uri
+                                                               "imageUri": uri
                                                                     }
                                                              },
                                                 "features": [
