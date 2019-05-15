@@ -51,7 +51,6 @@ new(function () {
 
 	ext.initGoogleServices = function () {
 	        var key = prompt("Enter the google api key");
-		prompt("Set speeLABEL_DETECTIONch status");
 		gapi.load('client:auth2', function () {
 			gapi.client.init({
 				
@@ -108,6 +107,7 @@ new(function () {
                                     ],
                           "outputUri": output,
                           }).then(function(r) {
+			prompt("Inside result block");
 			console.log(r);
            });
 	};
