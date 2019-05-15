@@ -221,8 +221,6 @@ new(function () {
 			[' ', 'Label Detection', 'labeldetect'],
 			[' ', 'Text Detection', 'textdetect'],
 			[' ', 'Safe search Detection', 'safedetect'],
-			[' ', 'Crop Hints', 'crophint'],
-			[' ', 'Product Search', 'productsearch'],
 			[' ', 'Web Detection', 'webdetect'],
 			[' ', 'Image Properties', 'imgproperty'],
 			
