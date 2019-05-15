@@ -46,20 +46,7 @@ new(function () {
 			translateCode: 'es',
 		},
 };
-	function updateGoogleSigninStatus(isSignedIn) {
-		if (isSignedIn) {
-			googleServicesAuthorized();
-		}
-	}
-
-
-         function googleServicesAuthorized() {
-		gapi.client.load('speech', 'v1', function() {
-			gapi.client.load('translate', 'v2', function () {
-				setSpeechStatus('Loaded.');
-			});
-		});
-	}
+	
 
 	function initExtension() {}
 
@@ -86,14 +73,12 @@ new(function () {
                                              ]
                                   }
 		}).then(function(r) {
-			prompt("Inside result block");
 			console.log(r);
                   });
 	};
 			
 	ext.initGoogleServices = function () {
 	        var key = prompt("Enter the google api key");
-		prompt("Set speech status");
 		gapi.load('client:auth2', function () {
 			gapi.client.init({
 				
@@ -108,7 +93,6 @@ new(function () {
 	};
 
         ext.translate = function (text) {
-		prompt("Translation block entered");
 		gapi.client.language.translations.translate({ 
 			'q': text,
 			'source': sourceLang,
@@ -121,12 +105,11 @@ new(function () {
 		
 	
         ext.getTranslatedText = function () {
-		prompt("Return translated text block");
 		return translatedText;
 	};
 
 	ext.imganalyse = function () {
-		var uri = prompt("Enter the google cloud url where image is stored");
+		var uri = prompt("Enter the url where image is stored");
 		gapi.client.vision.images.annotate({
                                        "requests": [
                                                  {
@@ -148,7 +131,6 @@ new(function () {
                       }
                   ]
                                           }).then(function(r) {
-			prompt("Inside result block");
 			console.log(r);
                   });
 	          };
@@ -159,7 +141,6 @@ new(function () {
 	};
 			
 	ext.setSourceLanguage = function (lang) {
-		prompt("Set source language block");
 		var sourceLanguage = lang;
 		sourceLang = languages[sourceLanguage].translateCode;
 		
@@ -173,7 +154,6 @@ new(function () {
 		
 	ext.facedetect = function () {
 		imgtype = "FACE_DETECTION"
-		prompt("Inside face detect");6
 	};
 		
 	ext.landmarkdetect = function () {
