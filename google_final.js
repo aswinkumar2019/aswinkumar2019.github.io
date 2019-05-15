@@ -128,26 +128,26 @@ new(function () {
 	ext.imganalyse = function () {
 		var uri = prompt("Enter the google cloud url where image is stored");
 		gapi.client.vision.images.annotate({
-                            "requests": [
-                                          {
-                                         "image": {
-                                                 "source": {
-                                                      "gcsImageUri": uri
-                                                   },
-                                              "features": [
-                                          {
-                                            "type": imgtype,
-                                            "model": "builtin/latest"
-                                                  }
-                                                 ],
-                                      "imageContext": {
-                                            "webDetectionParams": {
-                                                    "includeGeoResults": "TRUE"
-                                                  }
-                                                   }
-                                                }
-                                            }
-                                              ]
+                                            {
+                                       "requests": [
+                                                 {
+                                             "imageContext": {
+                                                     "webDetectionParams": {
+                                                       "includeGeoResults": true
+                                                                     }
+                                                           },
+                                                 "image": {
+                                                         "source": {
+                                                               "gcsImageUri": uri
+                                                                    }
+                                                             },
+                                                "features": [
+                                                     {
+                                                   "type": imgtype
+                            }
+                       ]
+                      }
+                  ]
                                           }).then(function(r) {
 			prompt("Inside result block");
 			console.log(r);
@@ -174,6 +174,7 @@ new(function () {
 		
 	ext.facedetect = function () {
 		imgtype = "FACE_DETECTION"
+		prompt("Inside face detect");6
 	};
 		
 	ext.landmarkdetect = function () {
