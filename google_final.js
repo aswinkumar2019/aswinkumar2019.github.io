@@ -129,7 +129,6 @@ new(function () {
 		var uri = prompt("Enter the google cloud url where image is stored");
 		gapi.client.vision.images.annotate({
                             "requests": [
-                                         {
                                           {
                                          "image": {
                                                  "source": {
@@ -142,13 +141,19 @@ new(function () {
                                                   }
                                                  ],
                                       "imageContext": {
-                                             object(ImageContext)
+                                            "webDetectionParams": {
+                                                    "includeGeoResults": "TRUE"
+                                                  }
                                                    }
                                                 }
                                             }
                                               ]
-                                          }
-	
+                                          }).then(function(r) {
+			prompt("Inside result block");
+			console.log(r);
+                  });
+	          };
+	 
         ext.setlanguage = function(lang) {
 		var speaklang = lang;
 		langspeak = languages[speaklang].translateCode;
@@ -191,13 +196,6 @@ new(function () {
 		imgtype = "SAFE_SEARCH_DETECTION"
 	};
 		
-	ext.crophint = function () {
-		imgtype = "CROP_HINTS"
-	};
-		
-	ext.productsearch = function () {
-		imgtype = "PRODUCT_SEARCH"
-	};
 		
 	ext.webdetect = function () {
 		imgtype = "WEB_DETECTION"
