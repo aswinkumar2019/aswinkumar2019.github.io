@@ -44,21 +44,7 @@ new(function () {
 			translateCode: 'es',
 		},
 };
-	function updateGoogleSigninStatus(isSignedIn) {
-		if (isSignedIn) {
-			googleServicesAuthorized();
-		}
-	}
-
-
-         function googleServicesAuthorized() {
-		gapi.client.load('speech', 'v1', function() {
-			gapi.client.load('translate', 'v2', function () {
-				setSpeechStatus('Loaded.');
-			});
-		});
-	}
-
+	
 	function initExtension() {}
 
 
@@ -72,7 +58,8 @@ new(function () {
 				// Your API key will be automatically added to the Discovery Document URLs.
 				'discoveryDocs': [
 					"https://speech.googleapis.com/$discovery/rest?version=v1",
-		    		"https://translation.googleapis.com/$discovery/rest?version=v2"
+		    		        "https://translation.googleapis.com/$discovery/rest?version=v2",
+					"https://videointelligence.googleapis.com/$discovery/rest?version=v1"
 		    	]})
 		});
 	};
@@ -116,6 +103,13 @@ new(function () {
 			['-'],
 			['-'],
 			['w', 'say %s', 'speak', 'Hello Kids'],
+			[' ', 'Label Detection', 'labeldetect'],
+			[' ', 'Shot Change D, 'videooutput'],
+			[' ', 'Get video Analysis', 'videooutput'],
+			[' ', 'Get video Analysis', 'videooutput'],
+			[' ', 'Get video Analysis', 'videooutput'],
+			[' ', 'Get video Analysis', 'videooutput'],
+			[' ', 'Get video Analysis', 'videooutput'],
 
 			['-'],
 			['-'],
