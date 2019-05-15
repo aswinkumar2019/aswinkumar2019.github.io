@@ -3,6 +3,7 @@ new(function () {
 	      $.getScript('https://apis.google.com/js/api.js', initExtension);
 	      var sourceLang;
               var targetLang;
+	      var videotype;
               var languages = {
 		'Japanese': {
 			translateCode: 'ja',
@@ -50,7 +51,7 @@ new(function () {
 
 	ext.initGoogleServices = function () {
 	        var key = prompt("Enter the google api key");
-		prompt("Set speech status");
+		prompt("Set speeLABEL_DETECTIONch status");
 		gapi.load('client:auth2', function () {
 			gapi.client.init({
 				
@@ -95,7 +96,46 @@ new(function () {
 		targetLanguage = lang;
 		targetLang = languages[targetLanguage].translateCode;
 	};
+	
+	ext.videooutput = function () {
+		var url = prompt("Enter the video url");
+		var output = prompt("Enter the bucket link where you want the output");
+		gapi.client.videos.annotate(
+			{
+                        "inputUri": url,
+                        "features": [
+                                 videotype
+                                    ],
+                          "outputUri": output,
+                          }).then(function(r) {
+			console.log(r);
+           });
+	};
+	
+	ext.labeldetect = function () {
+		videotype = "LABEL_DETECTION"
+	};
+	
 
+	ext.shotchange = function () {
+		videotype = "SHOT_CHANGE_DETECTION"
+	};
+	
+	ext.explicit = function () {
+		videotype = "EXPLICIT_CONTENT_DETECTION"
+	};
+	
+	ext.speechtranscript = function () {
+		videotype = "SPEECH_TRANSCRIPTION"
+	};
+	
+	ext.detecttext = function () {
+		videotype = "TEXT_DETECTION"
+	};
+	
+	ext.trackobject = function () {
+		videotype = "OBJECT_TRACKING"
+	};
         var descriptor = {
 		blocks: [
 			[' ', 'initialise', 'initGoogleServices'],
@@ -104,11 +144,11 @@ new(function () {
 			['-'],
 			['w', 'say %s', 'speak', 'Hello Kids'],
 			[' ', 'Label Detection', 'labeldetect'],
-			[' ', 'Shot Change D, 'videooutput'],
-			[' ', 'Get video Analysis', 'videooutput'],
-			[' ', 'Get video Analysis', 'videooutput'],
-			[' ', 'Get video Analysis', 'videooutput'],
-			[' ', 'Get video Analysis', 'videooutput'],
+			[' ', 'Shot Change Detection, 'shotchange'],
+			[' ', 'Explicit content detection', 'explicit'],
+			[' ', 'Speech transcription', 'speechtranscript'],
+			[' ', 'Text Detection', 'detecttext'],
+			[' ', 'Object tracking', 'trackobject'],
 			[' ', 'Get video Analysis', 'videooutput'],
 
 			['-'],
