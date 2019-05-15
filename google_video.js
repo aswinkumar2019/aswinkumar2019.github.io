@@ -144,7 +144,7 @@ new(function () {
 			['-'],
 			['w', 'say %s', 'speak', 'Hello Kids'],
 			[' ', 'Label Detection', 'labeldetect'],
-			[' ', 'Shot Change Detection, 'shotchange'],
+			[' ', 'Shot change Detection', 'shotchange'],
 			[' ', 'Explicit content detection', 'explicit'],
 			[' ', 'Speech transcription', 'speechtranscript'],
 			[' ', 'Text Detection', 'detecttext'],
