@@ -4,6 +4,7 @@ new(function () {
 	      var sourceLang;
               var targetLang;
 	      var langspeak;
+	      var imgtype;
               var languages = {
 		'Japanese': {
 			translateCode: 'ja',
@@ -100,6 +101,7 @@ new(function () {
 				// Your API key will be automatically added to the Discovery Document URLs.
 				'discoveryDocs': [
 					"https://texttospeech.googleapis.com/$discovery/rest?version=v1",
+					"https://vision.googleapis.com/$discovery/rest?version=v1",
 		    		        "https://translation.googleapis.com/$discovery/rest?version=v2"
 		    	]})
 		});
@@ -123,6 +125,29 @@ new(function () {
 		return translatedText;
 	};
 
+	ext.imganalyse = function () {
+		var uri = prompt("Enter the google cloud url where image is stored");
+		gapi.client.vision.images.annotate({
+                            "requests": [
+                                         {
+                                          {
+                                         "image": {
+                                                 "source": {
+                                                      "gcsImageUri": uri
+                                                   },
+                                              "features": [
+                                          {
+                                            "type": imgtype,
+                                            "model": "builtin/latest"
+                                                  }
+                                                 ],
+                                      "imageContext": {
+                                             object(ImageContext)
+                                                   }
+                                                }
+                                            }
+                                              ]
+                                          }
 	
         ext.setlanguage = function(lang) {
 		var speaklang = lang;
@@ -141,6 +166,46 @@ new(function () {
 		var targetLanguage = lang;
 		targetLang = languages[targetLanguage].translateCode;
 	};
+		
+	ext.facedetect = function () {
+		imgtype = "FACE_DETECTION"
+	};
+		
+	ext.landmarkdetect = function () {
+		imgtype = "LANDMARK_DETECTION"
+	};
+		
+	ext.logodetect = function () {
+		imgtype = "LOGO_DETECTION"
+	};
+		
+	ext.labeldetect = function () {
+		imgtype = "LABEL_DETECTION"
+	};
+		
+	ext.textdetect = function () {
+		imgtype = "TEXT_DETECTION"
+	};
+		
+	ext.safedetect = function () {
+		imgtype = "SAFE_SEARCH_DETECTION"
+	};
+		
+	ext.crophint = function () {
+		imgtype = "CROP_HINTS"
+	};
+		
+	ext.productsearch = function () {
+		imgtype = "PRODUCT_SEARCH"
+	};
+		
+	ext.webdetect = function () {
+		imgtype = "WEB_DETECTION"
+	};
+		
+	ext.imgproperty = function () {
+		imgtype = "IMAGE_PROPERTIES"
+	};
 
         var descriptor = {
 		blocks: [
@@ -150,7 +215,18 @@ new(function () {
 			['-'],
 			['w', 'initialise speak %s', 'speak', 'Hello Kids'],
 
-			[' ', 'Get speak result %s', 'speakresult'],
+			[' ', 'Say %s', 'speakresult', 'Hello Kids'],
+			[' ', 'Get Image analysis', 'imganalyse'],
+			[' ', 'face detection', 'facedetect'],
+			[' ', 'Landmark Detection', 'landmarkdetect'],
+			[' ', 'Logo Detection', 'logodetect'],
+			[' ', 'Label Detection', 'labeldetect'],
+			[' ', 'Text Detection', 'textdetect'],
+			[' ', 'Safe search Detection', 'safedetect'],
+			[' ', 'Crop Hints', 'crophint'],
+			[' ', 'Product Search', 'productsearch'],
+			[' ', 'Web Detection', 'webdetect'],
+			[' ', 'Image Properties', 'imgproperty'],
 			
 			['-'],
 			['-'],
