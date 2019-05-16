@@ -98,7 +98,7 @@ new(function () {
 	
 	ext.videooutput = function () {
 		var input = prompt("Enter the video url");
-		gapi.client.videos.annotate(
+		gapi.client.videointelligence.videos.annotate(
 			{
                          "inputUri":input,
                          "features": [
