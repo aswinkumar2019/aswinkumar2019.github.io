@@ -111,6 +111,17 @@ new(function () {
                              });
                        };
 	
+	ext.getresult = function () {
+		var id = prompt("Enter the name of process to get result");
+		gapi.client.videointelligence.operations.get(
+			{
+				"name" : id
+			}).then(function(response) {
+                      console.log(response.result);
+                           }, function(reason) {
+                      console.log('Error: ' + reason.result.error.message);
+                             });
+	};
 	ext.labeldetect = function () {
 		videotype = "LABEL_DETECTION"
 	};
@@ -148,7 +159,8 @@ new(function () {
 			[' ', 'Speech transcription', 'speechtranscript'],
 			[' ', 'Text Detection', 'detecttext'],
 			[' ', 'Object tracking', 'trackobject'],
-			[' ', 'Get video Analysis', 'videooutput'],
+			[' ', 'Start video Analysis', 'videooutput'],
+			[' ', 'Get Video analysis result', 'getresult'],
 
 			['-'],
 			['-'],
