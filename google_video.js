@@ -97,7 +97,6 @@ new(function () {
 	};
 	
 	ext.videooutput = function () {
-		var url = prompt("Enter the video url");
 		var labeltype = prompt("Enter the label Detection type,values maybe SHOT_MODE,FRAME_MODE and SHOT_AND_FRAME_MODE");
 		var output = prompt("Enter the bucket link where you want the output");
 		gapi.client.videos.annotate(
@@ -109,7 +108,6 @@ new(function () {
 			"videoContext": {
                               "labelDetectionMode": labeltype,
                                        },
-                          "outputUri": output,
                           }).then(function(r) {
 			prompt("Inside result block");
 			console.log(r);
