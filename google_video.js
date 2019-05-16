@@ -107,7 +107,10 @@ new(function () {
                          }).then(function(r) {
 			prompt("Inside result block");
 			console.log(r);
-           });
+           }, function(reason) {
+    console.log('Error: ' + reason.result.error.message);
+  });
+);
 	};
 	
 	ext.labeldetect = function () {
