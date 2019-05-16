@@ -107,7 +107,7 @@ new(function () {
                                     ],
 			"videoContext": {
                               "labelDetectionMode": labeltype,
-                                       },
+                                       }
                           }).then(function(r) {
 			prompt("Inside result block");
 			console.log(r);
