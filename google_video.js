@@ -104,14 +104,12 @@ new(function () {
                          "features": [
                                 videotype
                               ]
-                         }).then(function(r) {
-			prompt("Inside result block");
-			console.log(r);
-           }, function(reason) {
-    console.log('Error: ' + reason.result.error.message);
-  });
-);
-	};
+                         }).then(function(response) {
+                      console.log(response.result);
+                           }, function(reason) {
+                      console.log('Error: ' + reason.result.error.message);
+                             });
+                       };
 	
 	ext.labeldetect = function () {
 		videotype = "LABEL_DETECTION"
