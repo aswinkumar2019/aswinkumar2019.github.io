@@ -5,7 +5,7 @@ new(function () {
               var targetLang;
 	      var langspeak;
 	      var imgtype;
-	      var translatetext;
+	      var translatedtext;
               var languages = {
 		'Japanese': {
 			translateCode: 'ja',
@@ -107,14 +107,14 @@ new(function () {
 			'format': 'text'
 		}).then(function(r) {
 			console.log(r);
-			console.log(r.result.data.translations);
-			translatetext = r.result;
+			console.log(r.result.data.translations.translatedText);
+			translatedtext = r.result;
 		});
 	};
 		
 	
         ext.getTranslatedText = function () {
-		return translatedText;
+		return translatedtext;
 	};
 
 	ext.imganalyse = function () {
