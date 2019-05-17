@@ -87,8 +87,9 @@ new(function () {
                       {
                            uint8Array[i] = enc.charCodeAt(i);
                          }
-			console.log(uint8Array)
-			var blob = new Blob([enc]);
+			console.log(uint8Array);
+			var arrayBuffer = uInt8Array.buffer;
+			var blob = new Blob([arrayBuffer]);
 		        var url = URL.createObjectURL(blob);
                         var audio = new Audio(url);
 			audio.play();
