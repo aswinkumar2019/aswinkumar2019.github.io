@@ -7,6 +7,7 @@ new(function () {
               var targetLang;
 	      var videotype;
 	      var texttospeak; 
+	      var translatedText;
               var languages = {
 		'Japanese': {
 			translateCode: 'ja',
@@ -84,6 +85,7 @@ new(function () {
                                          
                                   }
 		}).then(function(r) {
+			prompt("inside then function");
 			var enc = window.atob(r.result.audioContent);
 			var uint8Array = new Uint8Array(enc.length);
 			console.log(enc);
@@ -96,6 +98,7 @@ new(function () {
 		        var url = URL.createObjectURL(blob);
                         var audio = new Audio(url);
 			audio.play();
+			prompt("Successful");
               });
 	};
 	
@@ -107,7 +110,8 @@ new(function () {
 			'target': targetLang,
 			'format': 'text'
 		}).then(function(r) {
-			console.log(r);
+			console.log(r.result.data.translations[0].translatedText);
+			translatedtext = r.result.data.translations[0].translatedText;
 		});
 	};
 		
