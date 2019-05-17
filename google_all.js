@@ -154,9 +154,9 @@ new(function () {
                                 videotype
                               ]
                          }).then(function(response) {
-                      console.log(response.result);
+                      console.log(response);
                            }, function(reason) {
-                      console.log('Error: ' + reason.result.error.message);
+                      console.log('Error: ' + reason);
                              });
                        };
 	
