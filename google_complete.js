@@ -55,6 +55,10 @@ new(function () {
         function playAudioFromUrl(url) {
 		prompt("Inside playaudiofromurl block");
 		var audio = new Audio(url);
+		audio.onended = function () {
+			if (finishHandler)
+				finishHandler();
+                  }
 		audio.play();
           };
 	
