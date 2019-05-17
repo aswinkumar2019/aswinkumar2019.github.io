@@ -52,13 +52,9 @@ new(function () {
 	
 	function initExtension() {}
 
-        function playAudioFromUrl(url, finishHandler) {
+        function playAudioFromUrl(url) {
 		prompt("Inside playaudiofromurl block");
 		var audio = new Audio(url);
-		audio.onended = function () {
-			if (finishHandler)
-				finishHandler();
-		}
 		audio.play();
           };
 	
@@ -89,7 +85,7 @@ new(function () {
 			var arrayBuffer = uInt8Array.buffer;
 			var blob = new Blob([arrayBuffer]);
 		        var url = URL.createObjectURL(blob);
-                        playAudioFromUrl(url, callback);
+                        playAudioFromUrl(url);
                   });
 	};
 			
