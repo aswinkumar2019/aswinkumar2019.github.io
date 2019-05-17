@@ -107,8 +107,8 @@ new(function () {
 			'format': 'text'
 		}).then(function(r) {
 			console.log(r);
-			console.log(r.result.data.translations.translatedText);
-			translatedtext = r.result;
+			console.log(r.result.data.translations[0].translatedText);
+			translatedtext = r.result.data.translations[0].translatedText;
 		});
 	};
 		
