@@ -81,7 +81,7 @@ new(function () {
 		}).then(function(r) {
 			console.log(r.result.audioContent);
 			var enc = window.atob(r.result.audioContent);
-			uint8Array = new Uint8Array(enc.length);
+			var uint8Array = new Uint8Array(enc.length);
 			console.log(enc);
 			for(var i = 0; i < enc.length; i++)
                       {
