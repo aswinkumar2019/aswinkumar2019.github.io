@@ -76,7 +76,7 @@ new(function () {
                          "audioConfig": {
                                 "audioEncoding": "MP3",
                                // "sampleRateHertz": number
-                                             ]
+                                         
                                   }
 		}).then(function(r) {
 			console.log(r.result.audioContent);
