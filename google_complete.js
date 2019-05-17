@@ -84,7 +84,8 @@ new(function () {
 			console.log(enc);
 			var blob = new Blob([enc]);
 		        var url = URL.createObjectURL(blob);
-                        playAudioFromUrl(url);
+                        var audio = new Audio(url);
+			audio.play();
                   });
 	};
 			
