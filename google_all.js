@@ -95,7 +95,8 @@ new(function () {
 				'discoveryDocs': [
 					"https://texttospeech.googleapis.com/$discovery/rest?version=v1",
 					"https://vision.googleapis.com/$discovery/rest?version=v1",
-		    		        "https://translation.googleapis.com/$discovery/rest?version=v2"
+		    		        "https://translation.googleapis.com/$discovery/rest?version=v2",
+					"https://videointelligence.googleapis.com/$discovery/rest?version=v1"
 		    	]})
 		});
 	};
