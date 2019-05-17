@@ -222,28 +222,28 @@ new(function () {
 		imgtype = "IMAGE_PROPERTIES"
 	};
 
-	ext.labeldetect = function () {
+	ext.v_labeldetect = function () {
 		videotype = "LABEL_DETECTION"
 	};
 	
 
-	ext.shotchange = function () {
+	ext.v_shotchange = function () {
 		videotype = "SHOT_CHANGE_DETECTION"
 	};
 	
-	ext.explicit = function () {
+	ext.v_explicit = function () {
 		videotype = "EXPLICIT_CONTENT_DETECTION"
 	};
 	
-	ext.speechtranscript = function () {
+	ext.v_speechtranscript = function () {
 		videotype = "SPEECH_TRANSCRIPTION"
 	};
 	
-	ext.detecttext = function () {
+	ext.v_detecttext = function () {
 		videotype = "TEXT_DETECTION"
 	};
 	
-	ext.trackobject = function () {
+	ext.v_trackobject = function () {
 		videotype = "OBJECT_TRACKING"
 	};
         var descriptor = {
