@@ -4,6 +4,7 @@ new(function () {
 	      var sourceLang;
               var targetLang;
 	      var videotype;
+	      var texttospeak; 
               var languages = {
 		'Japanese': {
 			translateCode: 'ja',
@@ -64,6 +65,38 @@ new(function () {
 		});
 	};
 
+	ext.speak = function (texttospeak) {
+		var voicetype = prompt("Enter voice type,Values may be MALE,FEMALE,SSML_VOICE_GENDER_UNSPECIFIED,NEUTRAL");
+		gapi.client.texttospeech.text.synthesize({
+			 "input": {
+                                 "text": texttospeak,
+                                   },
+                         "voice": {
+                                "languageCode": langspeak,
+                               // "name": string,
+                                "ssmlGender": voicetype
+                                  },
+                         "audioConfig": {
+                                "audioEncoding": "MP3",
+                               // "sampleRateHertz": number
+                                         
+                                  }
+		}).then(function(r) {
+			var enc = window.atob(r.result.audioContent);
+			var uint8Array = new Uint8Array(enc.length);
+			console.log(enc);
+			for(var i = 0; i < enc.length; i++)
+                      {
+                           uint8Array[i] = enc.charCodeAt(i);
+                         }
+			var arrayBuffer = uint8Array.buffer;
+			var blob = new Blob([arrayBuffer]);
+		        var url = URL.createObjectURL(blob);
+                        var audio = new Audio(url);
+			audio.play();
+              });
+	};
+	
         ext.translate = function (text) {
 		prompt("Translation block entered");
 		gapi.client.language.translations.translate({ 
