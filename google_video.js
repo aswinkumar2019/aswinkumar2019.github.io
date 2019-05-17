@@ -1,7 +1,9 @@
 new(function () {
+	     
 	      var ext = this;
 	      $.getScript('https://apis.google.com/js/api.js', initExtension);
 	      var sourceLang;
+	      var langspeak;
               var targetLang;
 	      var videotype;
 	      var texttospeak; 
@@ -155,6 +157,12 @@ new(function () {
                       console.log('Error: ' + reason.result.error.message);
                              });
 	};
+	
+	 ext.setlanguage = function(lang) {
+		var speaklang = lang;
+		langspeak = languages[speaklang].translateCode;
+          };
+	
 	ext.labeldetect = function () {
 		videotype = "LABEL_DETECTION"
 	};
@@ -198,6 +206,7 @@ new(function () {
 			['-'],
 			['-'],
 
+			[' ', 'choose language %m.languages', 'setlanguage', 'English'],
 			[' ', 'choose source language %m.sourceLanguages', 'setSourceLanguage', 'English'],
 			[' ', 'choose target language %m.targetLanguages', 'setTargetLanguage', 'Tamil'],
 			['w', 'translate %s', 'translate', 'Hello'],
