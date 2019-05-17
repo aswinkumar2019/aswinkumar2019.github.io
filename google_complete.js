@@ -82,9 +82,7 @@ new(function () {
 			console.log(r.result.audioContent);
 			var enc = window.atob(r.result.audioContent);
 			console.log(enc);
-			var uInt8Array = new Uint8Array(enc);
-			var arrayBuffer = uInt8Array.buffer;
-			var blob = new Blob([arrayBuffer]);
+			var blob = new Blob([enc]);
 		        var url = URL.createObjectURL(blob);
                         playAudioFromUrl(url);
                   });
