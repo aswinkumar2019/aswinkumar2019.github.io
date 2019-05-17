@@ -51,16 +51,6 @@ new(function () {
 
 	
 	function initExtension() {}
-
-        function playAudioFromUrl(url) {
-		prompt("Inside playaudiofromurl block");
-		var audio = new Audio(url);
-		audio.onended = function () {
-			if (finishHandler)
-				finishHandler();
-                  }
-		audio.play();
-          };
 	
 	ext.speak = function (texttospeak) {
 		var voicetype = prompt("Enter voice type,Values may be MALE,FEMALE,SSML_VOICE_GENDER_UNSPECIFIED,NEUTRAL");
@@ -79,7 +69,6 @@ new(function () {
                                          
                                   }
 		}).then(function(r) {
-			console.log(r.result.audioContent);
 			var enc = window.atob(r.result.audioContent);
 			var uint8Array = new Uint8Array(enc.length);
 			console.log(enc);
@@ -87,13 +76,11 @@ new(function () {
                       {
                            uint8Array[i] = enc.charCodeAt(i);
                          }
-			console.log(uint8Array);
 			var arrayBuffer = uint8Array.buffer;
 			var blob = new Blob([arrayBuffer]);
 		        var url = URL.createObjectURL(blob);
                         var audio = new Audio(url);
 			audio.play();
-			prompt("Successful");
                   });
 	};
 			
