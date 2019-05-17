@@ -199,9 +199,8 @@ new(function () {
 
 			['-'],
 			['-'],
-			['w', 'initialise speak %s', 'speak', 'Hello Kids'],
+			['w', 'Say %s', 'speak', 'Hello Kids'],
 
-			[' ', 'Say %s', 'speakresult', 'Hello Kids'],
 			[' ', 'Get Image analysis', 'imganalyse'],
 			[' ', 'face detection', 'facedetect'],
 			[' ', 'Landmark Detection', 'landmarkdetect'],
