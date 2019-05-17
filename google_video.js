@@ -85,7 +85,6 @@ new(function () {
                                          
                                   }
 		}).then(function(r) {
-			prompt("inside then function");
 			var enc = window.atob(r.result.audioContent);
 			var uint8Array = new Uint8Array(enc.length);
 			console.log(enc);
@@ -98,8 +97,7 @@ new(function () {
 		        var url = URL.createObjectURL(blob);
                         var audio = new Audio(url);
 			audio.play();
-			prompt("Successful");
-              });
+                  });
 	};
 	
         ext.translate = function (text) {
