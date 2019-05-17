@@ -106,7 +106,6 @@ new(function () {
 			'target': targetLang,
 			'format': 'text'
 		}).then(function(r) {
-			console.log(r);
 			console.log(r.result.data.translations[0].translatedText);
 			translatedtext = r.result.data.translations[0].translatedText;
 		});
@@ -114,6 +113,7 @@ new(function () {
 		
 	
         ext.getTranslatedText = function () {
+		console.log(translatedtext);
 		return translatedtext;
 	};
 
