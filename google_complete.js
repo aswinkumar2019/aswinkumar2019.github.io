@@ -3,6 +3,9 @@ new(function () {
 	      $.getScript('https://apis.google.com/js/api.js', initExtension);
 	      var sourceLang;
               var targetLang;
+	      var langspeak;
+	      var imgtype;
+	      var translatetext;
               var languages = {
 		'Japanese': {
 			translateCode: 'ja',
@@ -44,41 +47,68 @@ new(function () {
 			translateCode: 'es',
 		},
 };
-	function updateGoogleSigninStatus(isSignedIn) {
-		if (isSignedIn) {
-			googleServicesAuthorized();
-		}
-	}
+	
 
-
-         function googleServicesAuthorized() {
-		gapi.client.load('speech', 'v1', function() {
-			gapi.client.load('translate', 'v2', function () {
-				setSpeechStatus('Loaded.');
-			});
-		});
-	}
-
+	
 	function initExtension() {}
 
-
+        function playAudioFromUrl(url, finishHandler) {
+		prompt("Inside playaudiofromurl block");
+		var audio = new Audio(url);
+		audio.onended = function () {
+			if (finishHandler)
+				finishHandler();
+		}
+		audio.play();
+          };
+	
+	ext.speak = function (texttospeak) {
+		var voicetype = prompt("Enter voice type,Values may be MALE,FEMALE,SSML_VOICE_GENDER_UNSPECIFIED,NEUTRAL");
+		gapi.client.texttospeech.text.synthesize({
+			 "input": {
+                                 "text": texttospeak,
+                                   },
+                         "voice": {
+                                "languageCode": langspeak,
+                               // "name": string,
+                                "ssmlGender": voicetype
+                                  },
+                         "audioConfig": {
+                                "audioEncoding": "MP3",
+                                "speakingRate": 1.0,
+                                "pitch": 0.0,
+                                "volumeGainDb": 0.0,
+                               // "sampleRateHertz": number,
+                                "effectsProfileId": [
+                                              "medium-bluetooth-speaker-class-device"
+                                             ]
+                                  }
+		}).then(function(r) {
+			console.log(r.result);
+			var uInt8Array = new Uint8Array(r.result);
+			var arrayBuffer = uInt8Array.buffer;
+			var blob = new Blob([arrayBuffer]);
+		        var url = URL.createObjectURL(blob);
+                        playAudioFromUrl(url, callback);
+                  });
+	};
+			
 	ext.initGoogleServices = function () {
 	        var key = prompt("Enter the google api key");
-		prompt("Set speech status");
 		gapi.load('client:auth2', function () {
 			gapi.client.init({
 				
 				'apiKey': key,
 				// Your API key will be automatically added to the Discovery Document URLs.
 				'discoveryDocs': [
-					"https://speech.googleapis.com/$discovery/rest?version=v1",
-		    		"https://translation.googleapis.com/$discovery/rest?version=v2"
+					"https://texttospeech.googleapis.com/$discovery/rest?version=v1",
+					"https://vision.googleapis.com/$discovery/rest?version=v1",
+		    		        "https://translation.googleapis.com/$discovery/rest?version=v2"
 		    	]})
 		});
 	};
 
         ext.translate = function (text) {
-		prompt("Translation block entered");
 		gapi.client.language.translations.translate({ 
 			'q': text,
 			'source': sourceLang,
@@ -86,27 +116,90 @@ new(function () {
 			'format': 'text'
 		}).then(function(r) {
 			console.log(r);
+			translatetext = r.result;
 		});
 	};
 		
 	
         ext.getTranslatedText = function () {
-		prompt("Return translated text block");
 		return translatedText;
 	};
 
-	
+	ext.imganalyse = function () {
+		var uri = prompt("Enter the url where image is stored");
+		gapi.client.vision.images.annotate({
+                                       "requests": [
+                                                 {
+                                             "imageContext": {
+                                                     "webDetectionParams": {
+                                                       "includeGeoResults": true
+                                                                     }
+                                                           },
+                                                 "image": {
+                                                         "source": {
+                                                               "imageUri": uri
+                                                                    }
+                                                             },
+                                                "features": [
+                                                     {
+                                                   "type": imgtype
+                            }
+                       ]
+                      }
+                  ]
+                                          }).then(function(r) {
+			console.log(r);
+                  });
+	          };
+	 
+        ext.setlanguage = function(lang) {
+		var speaklang = lang;
+		langspeak = languages[speaklang].translateCode;
+	};
+			
 	ext.setSourceLanguage = function (lang) {
-		prompt("Set source language block");
-		sourceLanguage = lang;
+		var sourceLanguage = lang;
 		sourceLang = languages[sourceLanguage].translateCode;
 		
 		
 	};
 
 	ext.setTargetLanguage = function (lang) {
-		targetLanguage = lang;
+		var targetLanguage = lang;
 		targetLang = languages[targetLanguage].translateCode;
+	};
+		
+	ext.facedetect = function () {
+		imgtype = "FACE_DETECTION"
+	};
+		
+	ext.landmarkdetect = function () {
+		imgtype = "LANDMARK_DETECTION"
+	};
+		
+	ext.logodetect = function () {
+		imgtype = "LOGO_DETECTION"
+	};
+		
+	ext.labeldetect = function () {
+		imgtype = "LABEL_DETECTION"
+	};
+		
+	ext.textdetect = function () {
+		imgtype = "TEXT_DETECTION"
+	};
+		
+	ext.safedetect = function () {
+		imgtype = "SAFE_SEARCH_DETECTION"
+	};
+		
+		
+	ext.webdetect = function () {
+		imgtype = "WEB_DETECTION"
+	};
+		
+	ext.imgproperty = function () {
+		imgtype = "IMAGE_PROPERTIES"
 	};
 
         var descriptor = {
@@ -115,11 +208,23 @@ new(function () {
 
 			['-'],
 			['-'],
-			['w', 'say %s', 'speak', 'Hello Kids'],
+			['w', 'initialise speak %s', 'speak', 'Hello Kids'],
 
+			[' ', 'Say %s', 'speakresult', 'Hello Kids'],
+			[' ', 'Get Image analysis', 'imganalyse'],
+			[' ', 'face detection', 'facedetect'],
+			[' ', 'Landmark Detection', 'landmarkdetect'],
+			[' ', 'Logo Detection', 'logodetect'],
+			[' ', 'Label Detection', 'labeldetect'],
+			[' ', 'Text Detection', 'textdetect'],
+			[' ', 'Safe search Detection', 'safedetect'],
+			[' ', 'Web Detection', 'webdetect'],
+			[' ', 'Image Properties', 'imgproperty'],
+			
 			['-'],
 			['-'],
 
+		        [' ', 'choose language %m.languages', 'setlanguage', 'English'],
 			[' ', 'choose source language %m.sourceLanguages', 'setSourceLanguage', 'English'],
 			[' ', 'choose target language %m.targetLanguages', 'setTargetLanguage', 'Tamil'],
 			['w', 'translate %s', 'translate', 'Hello'],
