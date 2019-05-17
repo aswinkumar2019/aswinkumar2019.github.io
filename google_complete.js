@@ -107,6 +107,7 @@ new(function () {
 			'format': 'text'
 		}).then(function(r) {
 			console.log(r);
+			console.log(r.result.data.translations);
 			translatetext = r.result;
 		});
 	};
