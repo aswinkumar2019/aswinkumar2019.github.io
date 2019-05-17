@@ -6,6 +6,7 @@ new(function () {
 	      var langspeak;
 	      var imgtype;
 	      var translatedtext;
+	      var videotype;
               var languages = {
 		'Japanese': {
 			translateCode: 'ja',
@@ -144,6 +145,33 @@ new(function () {
                   });
 	          };
 	 
+	ext.videooutput = function () {
+		var input = prompt("Enter the video url");
+		gapi.client.videointelligence.videos.annotate(
+			{
+                         "inputUri":input,
+                         "features": [
+                                videotype
+                              ]
+                         }).then(function(response) {
+                      console.log(response.result);
+                           }, function(reason) {
+                      console.log('Error: ' + reason.result.error.message);
+                             });
+                       };
+	
+	ext.getresult = function () {
+		var id = prompt("Enter the name of process to get result");
+		gapi.client.videointelligence.operations.get(
+			{
+				"name" : id
+			}).then(function(response) {
+                      console.log(response.result);
+                           }, function(reason) {
+                      console.log('Error: ' + reason.result.error.message);
+                             });
+	};
+	
         ext.setlanguage = function(lang) {
 		var speaklang = lang;
 		langspeak = languages[speaklang].translateCode;
@@ -194,6 +222,30 @@ new(function () {
 		imgtype = "IMAGE_PROPERTIES"
 	};
 
+	ext.labeldetect = function () {
+		videotype = "LABEL_DETECTION"
+	};
+	
+
+	ext.shotchange = function () {
+		videotype = "SHOT_CHANGE_DETECTION"
+	};
+	
+	ext.explicit = function () {
+		videotype = "EXPLICIT_CONTENT_DETECTION"
+	};
+	
+	ext.speechtranscript = function () {
+		videotype = "SPEECH_TRANSCRIPTION"
+	};
+	
+	ext.detecttext = function () {
+		videotype = "TEXT_DETECTION"
+	};
+	
+	ext.trackobject = function () {
+		videotype = "OBJECT_TRACKING"
+	};
         var descriptor = {
 		blocks: [
 			[' ', 'initialise', 'initGoogleServices'],
@@ -203,17 +255,27 @@ new(function () {
 			['w', 'Say %s', 'speak', 'Hello Kids'],
 
 			[' ', 'Get Image analysis', 'imganalyse'],
-			[' ', 'face detection', 'facedetect'],
-			[' ', 'Landmark Detection', 'landmarkdetect'],
-			[' ', 'Logo Detection', 'logodetect'],
-			[' ', 'Label Detection', 'labeldetect'],
-			[' ', 'Text Detection', 'textdetect'],
-			[' ', 'Safe search Detection', 'safedetect'],
-			[' ', 'Web Detection', 'webdetect'],
+			[' ', 'Image face detection', 'facedetect'],
+			[' ', 'Image Landmark Detection', 'landmarkdetect'],
+			[' ', 'Image Logo Detection', 'logodetect'],
+			[' ', 'Image Label Detection', 'labeldetect'],
+			[' ', 'Image Text Detection', 'textdetect'],
+			[' ', 'Image Safe search Detection', 'safedetect'],
+			[' ', 'Image Web Detection', 'webdetect'],
 			[' ', 'Image Properties', 'imgproperty'],
 			
 			['-'],
 			['-'],
+			
+			[' ', 'Video Label Detection', 'v_labeldetect'],
+			[' ', 'Video Shot change Detection', 'v_shotchange'],
+			[' ', 'Video Explicit content detection', 'v_explicit'],
+			[' ', 'Video Speech transcription', 'v_speechtranscript'],
+			[' ', 'Video Text Detection', 'v_detecttext'],
+			[' ', 'Video Object tracking', 'v_trackobject'],
+			[' ', 'Start video Analysis', 'videooutput'],
+			[' ', 'Get Video analysis result', 'getresult'],
+
 
 		        [' ', 'choose language %m.languages', 'setlanguage', 'English'],
 			[' ', 'choose source language %m.sourceLanguages', 'setSourceLanguage', 'English'],
