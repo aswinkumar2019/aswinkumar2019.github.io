@@ -80,7 +80,8 @@ new(function () {
                                   }
 		}).then(function(r) {
 			console.log(r.result.audioContent);
-			var uInt8Array = new Uint8Array(r.result.audioContent.AudioStream);
+			var enc = window.atob(r.result.audioContent);
+			var uInt8Array = new Uint8Array(enc.AudioStream);
 			var arrayBuffer = uInt8Array.buffer;
 			var blob = new Blob([arrayBuffer]);
 		        var url = URL.createObjectURL(blob);
