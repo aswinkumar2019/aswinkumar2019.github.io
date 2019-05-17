@@ -86,6 +86,7 @@ new(function () {
 			if (err)
 				console.log(err, err.stack);
 			else {
+				console.log(data);
 				var uInt8Array = new Uint8Array(data.AudioStream);
 				var arrayBuffer = uInt8Array.buffer;
 				var blob = new Blob([arrayBuffer]);
