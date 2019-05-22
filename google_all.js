@@ -115,7 +115,6 @@ new(function () {
 		
 	
         ext.getTranslatedText = function () {
-		console.log(translatedtext);
 		return translatedtext;
 	};
 
