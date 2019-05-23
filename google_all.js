@@ -72,7 +72,6 @@ new(function () {
 		}).then(function(r) {
 			var enc = window.atob(r.result.audioContent);
 			var uint8Array = new Uint8Array(enc.length);
-			console.log(enc);
 			for(var i = 0; i < enc.length; i++)
                       {
                            uint8Array[i] = enc.charCodeAt(i);
@@ -108,7 +107,6 @@ new(function () {
 			'target': targetLang,
 			'format': 'text'
 		}).then(function(r) {
-			console.log(r.result.data.translations[0].translatedText);
 			translatedtext = r.result.data.translations[0].translatedText;
 		});
 	};
