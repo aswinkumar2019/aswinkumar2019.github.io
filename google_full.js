@@ -54,7 +54,19 @@ new(function () {
 	
 	function initExtension() {}
 	
-	ext.speak = function (texttospeak) {
+	function playaudiofromurl(url, finishHandler) {
+		setSpeechStatus('Speaking...');
+		var audio = new Audio(url);
+		audio.onended = function() {
+			setSpeechStatus('');
+			if (finishHandler)
+				finishHandler();
+		}
+		audio.play();
+	}
+
+	
+	ext.speak = function (texttospeak,finishHandler) {
 		gapi.client.texttospeech.text.synthesize({
 			 "input": {
                                  "text": texttospeak,
@@ -79,8 +91,8 @@ new(function () {
 			var arrayBuffer = uint8Array.buffer;
 			var blob = new Blob([arrayBuffer]);
 		        var url = URL.createObjectURL(blob);
-                        var audio = new Audio(url);
-			audio.play();
+                    //    var audio = new Audio(url);
+			playaudiofromurl(url,finishHandler);
                   });
 	};
 			
