@@ -6,6 +6,7 @@ new(function () {
 	      var langspeak;
 	      var imgtype;
 	      var translatedtext;
+	      var voicetype;
 	      var videotype;
               var languages = {
 		'Japanese': {
@@ -54,7 +55,6 @@ new(function () {
 	function initExtension() {}
 	
 	ext.speak = function (texttospeak) {
-		var voicetype = prompt("Enter voice type,Values may be MALE,FEMALE,SSML_VOICE_GENDER_UNSPECIFIED,NEUTRAL");
 		gapi.client.texttospeech.text.synthesize({
 			 "input": {
                                  "text": texttospeak,
@@ -85,7 +85,8 @@ new(function () {
 	};
 			
 	ext.initGoogleServices = function () {
-	        var key = prompt("Enter the google api key");
+		var key = prompt("Enter the google api key");
+                voicetype = prompt("Enter voice type,Values may be MALE,FEMALE,SSML_VOICE_GENDER_UNSPECIFIED,NEUTRAL");
 		gapi.load('client:auth2', function () {
 			gapi.client.init({
 				
