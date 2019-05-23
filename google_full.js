@@ -55,10 +55,8 @@ new(function () {
 	function initExtension() {}
 	
 	function playaudiofromurl(url, finishHandler) {
-		setSpeechStatus('Speaking...');
 		var audio = new Audio(url);
 		audio.onended = function() {
-			setSpeechStatus('');
 			if (finishHandler)
 				finishHandler();
 		}
