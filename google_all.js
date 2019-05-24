@@ -22,9 +22,7 @@ new(function () {
 			translateCode: 'ar',
 		},
 		'German': {
-			translateCode: 'de',translateText(text, sourceLanguage, targetLanguage, function (txt) {
-			translatedText = txt;
-callback();
+			translateCode: 'de',
 		},
 		'Gujarati': {
 			translateCode: 'gu',
@@ -107,9 +105,7 @@ callback();
 				'discoveryDocs': [
 					"https://texttospeech.googleapis.com/$discovery/rest?version=v1",
 					"https://vision.googleapis.com/$discovery/rest?version=v1",
-		    		        "https://translation.googleapis.com/$discovery/rest?version=vtranslateText(text, sourceLanguage, targetLanguage, function (txt) {
-			translatedText = txt;
-callback();2",
+		    		        "https://translation.googleapis.com/$discovery/rest?version=v1"
 					"https://videointelligence.googleapis.com/$discovery/rest?version=v1"
 		    	]})
 		});
