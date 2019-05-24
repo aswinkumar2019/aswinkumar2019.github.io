@@ -125,6 +125,7 @@ new(function () {
 		translateText(text, function (txt) {
 			translatedtext = txt;
 			callback();
+	});
 	};
 		
 	
