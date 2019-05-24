@@ -111,7 +111,7 @@ new(function () {
 		});
 	};
 
-	function translateText = function (text, translationHandler) {
+	function translateText(text, translationHandler) {
 		gapi.client.language.translations.translate({ 
 			'q': text,
 			'source': sourceLang,
