@@ -22,7 +22,9 @@ new(function () {
 			translateCode: 'ar',
 		},
 		'German': {
-			translateCode: 'de',
+			translateCode: 'de',translateText(text, sourceLanguage, targetLanguage, function (txt) {
+			translatedText = txt;
+callback();
 		},
 		'Gujarati': {
 			translateCode: 'gu',
@@ -105,21 +107,28 @@ new(function () {
 				'discoveryDocs': [
 					"https://texttospeech.googleapis.com/$discovery/rest?version=v1",
 					"https://vision.googleapis.com/$discovery/rest?version=v1",
-		    		        "https://translation.googleapis.com/$discovery/rest?version=v2",
+		    		        "https://translation.googleapis.com/$discovery/rest?version=vtranslateText(text, sourceLanguage, targetLanguage, function (txt) {
+			translatedText = txt;
+callback();2",
 					"https://videointelligence.googleapis.com/$discovery/rest?version=v1"
 		    	]})
 		});
 	};
 
-        ext.translate = function (text) {
+	function translateText = function (text, translationHandler) {
 		gapi.client.language.translations.translate({ 
 			'q': text,
 			'source': sourceLang,
 			'target': targetLang,
 			'format': 'text'
 		}).then(function(r) {
-			translatedtext = r.result.data.translations[0].translatedText;
+			translationHandler(r.result.data.translations[0].translatedText);
 		});
+	};
+        ext.translate = function (text, callback) {
+		translateText(text, function (txt) {
+			translatedtext = txt;
+			callback();
 	};
 		
 	
